@@ -1,0 +1,16 @@
+[alias]
+  vimdiff = !/home/deshwal/bin/git_vimdiff.pl
+  graph = log --graph --pretty=oneline --decorate --abbrev-commit
+  checkpoint = !git add -A && git commit --no-verify -m \"Checkpoint: $(date)\"
+[color]
+  ui = true
+  branch = true
+  diff = true
+  interactive = true
+[treediff]
+  tool = vimdiff.py
+[format]
+  pretty = short
+[user]
+  name = deshwal
+  email = deshwal@scaligent.com

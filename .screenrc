@@ -1,0 +1,8 @@
+term screen-256color
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce "on"
+defscrollback 200000
+termcapinfo xterm* ti@:te@
+caption always '%{= kW}%-w%{= Kd}%n %t%{-}%+w '
+bindkey ^[[1;3D prev # alt left
+bindkey ^[[1;3C next # alt right
