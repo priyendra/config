@@ -42,44 +42,17 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 alias ls='ls --color=auto'
-alias vi="vim"
-alias more="less"
-alias ll="ls -l"
 #alias awk='awk --file=/home/deshwal/bin/utils.awk'
-alias emacs="emacs -nw"
-alias ngrep="/bin/grep --color=auto"
 alias grep="/bin/egrep --color=auto"
 alias renderhtml='sed -e s/"<br>"/"\n"/g | sed -e s/"<p>"/"\n"/g | sed -e s/"<\/p>"/"\n"/g | sed -e s/"<\/tr>"/"\n"/g | sed -e s/"<\/th>"/"\t"/g | sed -e s/"<\/td>"/"\t"/g | sed -e s/"<[^>]*>"//g | sed -e /"^[ \t]*$"/d | sed -e s/"\t\t*"/"\t"/g | sed -e s/"&nbsp;"/" "/g'
-alias revertall='g4 pending | grep '//' | cut -d \# -f 1 | sed -e s/".*... "//g | xargs g4 revert'
 alias dropblanklines='sed -e /"^[ \t]*$"/d'
-alias add='mapreduce --mapper=IGNORE_KEY_MAPPER --reducer=SUM_REDUCER'
-alias shuffle='sample --num=-1'
-alias make-opt='make-opt -j60'
-alias make-dbg='make-dbg -j60'
 alias eatnewlines="perl -e 'while (<>) {chomp(\$_); print \$_;}'"
-alias submit_tests_blaze="blaze --blazerc=/dev/null --objfs build --noresource_autosense --embed_changelist none --nobuild_runfile_links --compilation_mode=fastbuild --forge --copt='-DMUSTANG_USE_64BIT_TOKENPOS'"
-alias runtests='grunt -z -r --nofallback --blaze_flags=--forge,--experimental_ld'
 alias pycalc='python -E'
-alias vless='/usr/share/vim/vim71/macros/less.sh'
-alias cleanvim='for extn in swn swo swp swm; do find ./ -name "*.$extn" | xargs rm -f; done'
-# alias vimkonsole='konsole --noscrollbar --noresize --nomenubar --notabbar --noframe --vt_sz 323x126 -T editor 2>/dev/null &'
-alias link_cmdlog='ln -s $(readlink ./blaze-bin | sed -e s/google3.*//g)command.log .'
-alias cpprof='cpprof --pprof_classic'
 
 export EDITOR='vim'
 
-export G4MULTIDIFF=1
-export P4CONFIG=.p4config
-export P4DIFF="/home/deshwal/bin/vimdiff.py"
-export P4MERGE=/home/build/public/eng/perforce/mergep4.tcl
-export P4EDITOR="vim"
-export PATH=.:/usr/local/google/home/deshwal/bin:/home/deshwal/bin:/usr/java/j2sdk1.4.2_06/bin:/usr/local/symlinks:$PATH
+export PATH=.:/home/deshwal/bin:$PATH
 export LC_ALL=C
-
-export GFS_CLIENT_SECURITY_LEVEL="integrity"
-
-export JAVA_HOME=/usr/java/j2sdk1.4.2_06
-export CLASSPATH=.:/usr/java/j2sdk1.4.2_06
 
 export HISTSIZE=100000000
 export HISTFILESIZE=1000000000
@@ -128,6 +101,12 @@ $NO_COLOR>> "
 setup_prompt
 select_screen
 
+################################################################################
+#                          SCALIGENT SPECIFIC STUFF                            #
+################################################################################
 function scons {
-  /usr/bin/scons $@ 2>&1 | tee scons.log
+  /usr/bin/scons $@ 2>&1 | tee scons/scons.log
 }
+export JAVA_HOME=$HOME/software/toolchain/jvm/jdk1.7
+export MAVEN_HOME=$HOME/software/toolchain/apache-maven/apache-maven-3.0.4
+export PATH=$MAVEN_HOME:$JAVA_HOME:$PATH
