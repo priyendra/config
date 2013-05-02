@@ -1,6 +1,9 @@
 " make sure that windows always remain equal in size.
 set equalalways
 
+" set a dark background by default.
+set background=dark
+
 " search related
 set incsearch
 set hlsearch
