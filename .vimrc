@@ -1,3 +1,6 @@
+" Source the minimal vim config file.
+source ~/.vimrc.minimal
+
 " indicate has terminal 256 colors
 set t_Co=256
 
