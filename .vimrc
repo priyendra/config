@@ -102,6 +102,11 @@ command! -range=% CComment :normal `<i#if 0<CR><ESC> `>a<CR>#endif<ESC>
 " Custom auto complete behavior.
 set complete-=i
 
+" Create custom alias for seeing scons errors inside vim.. We define two of them
+" since the two are often mis-typed.
+command! SConsErrors execute ":cfile scons/scons.log"
+command! SConsErrors execute ":cfile scons/scons.log"
+
 " Set up scons to work from inside vim
 set makeprg=/usr/bin/scons
 
