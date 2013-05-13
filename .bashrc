@@ -101,6 +101,10 @@ $NO_COLOR>> "
 setup_prompt
 select_screen
 
+if [ -f /etc/bash_completion ]; then
+  source /etc/bash_completion
+fi
+
 ################################################################################
 #                          SCALIGENT SPECIFIC STUFF                            #
 ################################################################################
