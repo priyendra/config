@@ -2,6 +2,7 @@
   vimdiff = !/home/deshwal/bin/git_vimdiff.pl
   graph = log --graph --pretty=oneline --decorate --abbrev-commit
   checkpoint = !git add -A && git commit --no-verify -m \"Checkpoint: $(date)\"
+  quickstatus = !git status $(ls -ad | grep -v "third-party")
 [color]
   ui = true
   branch = true
