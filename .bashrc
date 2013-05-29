@@ -48,6 +48,7 @@ alias renderhtml='sed -e s/"<br>"/"\n"/g | sed -e s/"<p>"/"\n"/g | sed -e s/"<\/
 alias dropblanklines='sed -e /"^[ \t]*$"/d'
 alias eatnewlines="perl -e 'while (<>) {chomp(\$_); print \$_;}'"
 alias pycalc='python -E'
+alias g++='g++ --std=c++0x'
 
 export EDITOR='vim'
 
@@ -101,16 +102,13 @@ $NO_COLOR>> "
 setup_prompt
 select_screen
 
-if [ -f /etc/bash_completion ]; then
-  source /etc/bash_completion
-fi
-
 ################################################################################
 #                          SCALIGENT SPECIFIC STUFF                            #
 ################################################################################
 function scons {
   /usr/bin/scons $@ 2>&1 | tee scons/scons.log
 }
-export JAVA_HOME=$HOME/software/toolchain/jvm/jdk1.7
-export MAVEN_HOME=$HOME/software/toolchain/apache-maven/apache-maven-3.0.4
+export SCALIGENT="/usr/local/scaligent"
+export JAVA_HOME=$SCALIGENT/toolchain/jvm/jdk1.7
+export MAVEN_HOME=$SCALIGENT/toolchain/apache-maven/apache-maven-3.0.4
 export PATH=$MAVEN_HOME:$JAVA_HOME:$PATH
