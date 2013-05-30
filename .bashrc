@@ -49,6 +49,7 @@ alias dropblanklines='sed -e /"^[ \t]*$"/d'
 alias eatnewlines="perl -e 'while (<>) {chomp(\$_); print \$_;}'"
 alias pycalc='python -E'
 alias g++='g++ --std=c++0x'
+alias allcolors='for code in {0..255}; do echo -e "\e[38;05;${code}m $code: Test"; done'
 
 export EDITOR='vim'
 
@@ -86,17 +87,21 @@ PROMPT_COMMAND="history -a && prompt_command"
 
 function setup_prompt {
   local NO_COLOR="\[\033[0m\]"
-  local LIGHTRED="\[\033[1;31m\]"
-  local LIGHTGREEN="\[\033[1;32m\]"
-  local LIGHTYELLOW="\[\033[1;33m\]"
-  UNDER_SCREEN=$(ps afxwww | grep $PPID | grep -i screen)
-  if [ ${#UNDER_SCREEN} -eq 0 ]; then
-    PS1="$LIGHTGREEN[\t $username@\$hostname:\${newPWD}]
-$NO_COLOR>> "
+  local ORANGE="\e[38;05;202m"
+  local GREEN="\e[38;05;46m"
+  local YELLOW="\e[38;05;227m"
+  local BLUE="\e[38;05;75m"
+  local PINK="\e[38;05;213m"
+  local HOST=$(hostname)
+  if [ $HOST == "dmon" ]; then
+    HOSTCOLOR="$GREEN"
+  elif [ $HOST == "dmon-ntx" ]; then
+    HOSTCOLOR="$YELLOW"
   else
-    PS1="$LIGHTRED[\t $username@\$hostname:\${newPWD}]
-$NO_COLOR>> "
+    HOSTCOLOR="$RED"
   fi
+  PS1="$HOSTCOLOR[\t $username@\$hostname \${newPWD}]
+$NO_COLOR>> "
 }
 
 setup_prompt
