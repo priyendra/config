@@ -94,7 +94,7 @@ command! SaveSession execute "mksession! /tmp/vimbook.vim"
 command! NoAutoIndent execute "setl noai nocin nosi inde="
 
 command! GitRevert execute "! git checkout " . shellescape(expand('%', 1))
-command! GitDiff   execute "! git vimdiff -- " . shellescape(expand('%', 1))
+command! GitDiff   execute "! git vdiff -- " . shellescape(expand('%', 1))
 
 " Enclose a range in #if 0 ... #endif
 command! -range=% CComment :normal `<i#if 0<CR><ESC> `>a<CR>#endif<ESC>
