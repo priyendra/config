@@ -116,4 +116,4 @@ function scons {
 export SCALIGENT="/usr/local/scaligent"
 export JAVA_HOME=$SCALIGENT/toolchain/jvm/jdk1.7
 export MAVEN_HOME=$SCALIGENT/toolchain/apache-maven/apache-maven-3.0.4
-export PATH=$MAVEN_HOME:$JAVA_HOME:$PATH
+export PATH=$MAVEN_HOME/bin:$JAVA_HOME:$PATH
