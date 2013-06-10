@@ -1,4 +1,5 @@
 [alias]
+  unstage = reset HEAD --
   vdiff = !/home/deshwal/bin/git_vimdiff.pl
   vdiffp = !git vdiff "$1"~
   diffp = !git diff "$1"~
