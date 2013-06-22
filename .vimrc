@@ -81,6 +81,7 @@ nmap . <C-w>w
 nmap < :bprevious<CR>
 nmap > :bnext<CR>
 nmap :E :e <C-R>=expand("%")<CR>
+nmap <F3> :botright cwindow<CR>20<C-W>+
 
 " Highlight trailing whitespace
 syntax match TrailingWhitespace /  *$/ containedin=ALL
