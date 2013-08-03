@@ -1,0 +1,11 @@
+#! /bin/bash
+
+source ~/.bashrc
+
+cmd=$@
+$cmd
+if [ $? -eq 0 ]; then
+  notify-send "Success" "$cmd"
+else
+  notify-send "Failure" "$cmd"
+fi
