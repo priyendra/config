@@ -110,8 +110,11 @@ select_screen
 ################################################################################
 #                          SCALIGENT SPECIFIC STUFF                            #
 ################################################################################
-function scons {
+function scons() {
   /usr/bin/scons $@ 2>&1 | tee scons/scons.log
+  if [ ${PIPESTATUS[0]} -ne 0 ]; then
+    false
+  fi
 }
 export SCALIGENT="/usr/local/scaligent"
 export JAVA_HOME=$SCALIGENT/toolchain/jvm/jdk1.7
