@@ -50,6 +50,7 @@ alias eatnewlines="perl -e 'while (<>) {chomp(\$_); print \$_;}'"
 alias pycalc='python -E'
 alias g++='g++ --std=c++0x'
 alias allcolors='for code in {0..255}; do echo -e "\e[38;05;${code}m $code: Test"; done'
+alias m='monitor'
 
 export EDITOR='vim'
 
