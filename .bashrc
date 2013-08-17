@@ -51,6 +51,7 @@ alias pycalc='python -E'
 alias g++='g++ --std=c++0x'
 alias allcolors='for code in {0..255}; do echo -e "\e[38;05;${code}m $code: Test"; done'
 alias m='monitor'
+alias git='m git'
 
 export EDITOR='vim'
 
@@ -108,11 +109,14 @@ $NO_COLOR>> "
 setup_prompt
 select_screen
 
+# Enable git auto completion
+source ~/.git-completion.bash
+
 ################################################################################
 #                          SCALIGENT SPECIFIC STUFF                            #
 ################################################################################
 function scons() {
-  /usr/bin/scons $@ 2>&1 | tee scons/scons.log
+  m /usr/bin/scons $@ 2>&1 | tee scons/scons.log
   if [ ${PIPESTATUS[0]} -ne 0 ]; then
     false
   fi
