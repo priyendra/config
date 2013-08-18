@@ -108,8 +108,15 @@ set complete-=i
 command! SConsErrors execute ":cfile scons/scons.log"
 command! SConsErrors execute ":cfile scons/scons.log"
 
-" Set up scons to work from inside vim
-set makeprg=/usr/bin/scons
+" Command for linting the file in the current buffer.
+function! CppLintFunction()
+  silent ! cpplint.py % 2> /tmp/cpplint.errors
+  :redraw!
+  if v:shell_error
+    cfile /tmp/cpplint.errors
+  endif
+endfunction
+command! CppLint execute ":call CppLintFunction()"
 
 " Enable syntax highlighting for scons files.
 autocmd BufReadPre SConstruct set filetype=python
