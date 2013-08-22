@@ -103,6 +103,10 @@ command! -range=% CComment :normal `<i#if 0<CR><ESC> `>a<CR>#endif<ESC>
 " Custom auto complete behavior.
 set complete-=i
 
+" With C++11, we do not need to mark the curly brace as an error.
+let c_no_curly_error=1
+
+
 " Create custom alias for seeing scons errors inside vim.. We define two of them
 " since the two are often mis-typed.
 command! SConsErrors execute ":cfile scons/scons.log"
