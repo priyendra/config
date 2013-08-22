@@ -109,8 +109,8 @@ $NO_COLOR>> "
 setup_prompt
 select_screen
 
-# Enable git auto completion
-source ~/.git-completion.bash
+# Enable git auto completion (disabled for now since it was quite painful).
+# source ~/.git-completion.bash
 
 ################################################################################
 #                          SCALIGENT SPECIFIC STUFF                            #
