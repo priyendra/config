@@ -241,8 +241,9 @@ _STL_HEADERS = frozenset([
     'function.h', 'functional', 'hash_map', 'hash_map.h', 'hash_set',
     'hash_set.h', 'iterator', 'list', 'list.h', 'map', 'memory', 'mutex', 'new',
     'pair.h', 'pthread_alloc', 'queue', 'random', 'set', 'set.h', 'sstream',
-    'stack', 'stl_alloc.h', 'stl_relops.h', 'type_traits.h', 'thread',
-    'unordered_map', 'unordered_set', 'utility', 'vector', 'vector.h',
+    'stack', 'stl_alloc.h', 'stl_relops.h', 'tuple', 'type_traits',
+    'type_traits.h', 'thread', 'unordered_map', 'unordered_set', 'utility',
+    'vector', 'vector.h',
     ])
 
 
