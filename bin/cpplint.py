@@ -77,7 +77,7 @@
 # (1) Added support for .hpp and .cpp file extensions.  Existing
 #     support for .cpp extension was incomplete, and .hpp as a
 #     C++ extension was not supported. (abhishek@scaligent.com)
-# (2) Allowed missing spaces around >> when using >>* or >>& which is
+# (2) Allowed missing spaces around >> when using >>* or >>& or >>::  which is
 #     common with nested templates.
 # (3) Added try and catch to the list of control structures around which
 #     it is OK to leave white space.
@@ -1849,9 +1849,9 @@ def CheckSpacing(filename, clean_lines, linenum, error):
           'Missing spaces around %s' % match.group(1))
   # SCALIGENT_CUSTOMIZATION_BEGIN
   # We allow no-spaces around << and >> when used like this: 10<<20 or
-  # in nested templates as >>& and >>*, e.g. vector<vector<int>>&, but
+  # in nested templates as >>&, >>* or >>::, e.g. vector<vector<int>>&, but
   # not otherwise (particularly, not when used as streams)
-  match = Search(r'[^0-9\s](<<|>>)[^0-9*&\s]', line)
+  match = Search(r'[^0-9\s](<<|>>)[^0-9*&:\s]', line)
   if match:
     error(filename, linenum, 'whitespace/operators', 3,
           'Missing spaces around %s' % match.group(1))
@@ -2085,7 +2085,7 @@ def CheckBraces(filename, clean_lines, linenum, error):
       break
   if (Search(r'{.*}\s*;', line) and
       line.count('{') == line.count('}') and
-      not Search(r'struct|class|enum|\s*=\s*{', line)):
+      not Search(r'struct|class|enum|\s*{', line)):
     error(filename, linenum, 'readability/braces', 4,
           "You don't need a ; after a }")
 
@@ -2581,14 +2581,17 @@ def CheckLanguage(filename, clean_lines, linenum, file_extension, include_state,
       len(re.findall(r'\([^()]*\b(?:[\w:]|<[^()]*>)+\s+const(\s?&|&\s?)[\w]+',
                      fnline))):
 
+    # SCALIGENT_CUSTOMIZATION_BEGIN
     # We allow non-const references in a few standard places, like functions
     # called "swap()" or iostream operators like "<<" or ">>".
+    # We also allow them inside C++11 range based for loops.
     if not Search(
-        r'(swap|Swap|operator[<>][<>])\s*\(\s*(?:[\w:]|<.*>)+\s*&',
+        r'(for|swap|Swap|operator[<>][<>])\s*\(\s*(?:[\w:]|<.*>)+\s*&',
         fnline):
       error(filename, linenum, 'runtime/references', 2,
             'Is this a non-const reference? '
             'If so, make const or use a pointer.')
+    # SCALIGENT_CUSTOMIZATION_END
 
   # Check to see if they're using an conversion function cast.
   # I just try to capture the most common basic types, though there are more.
