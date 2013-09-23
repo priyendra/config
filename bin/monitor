@@ -2,10 +2,16 @@
 
 source ~/.bashrc
 
+start_time=$(date +%s)
 cmd=$@
 $cmd
-if [ $? -eq 0 ]; then
-  notify-send "Success" "$cmd"
-else
-  notify-send "Failure" "$cmd"
+exec_time=$(($(date +%s) - $start_time))
+
+# We only send notifications when the command takes at least 5 seconds.
+if [ $exec_time -ge 5 ]; then
+  if [ $? -eq 0 ]; then
+    notify-send "Success" "$cmd"
+  else
+    notify-send "Failure" "$cmd"
+  fi
 fi
