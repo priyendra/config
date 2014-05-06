@@ -56,7 +56,7 @@ alias git='monitor git'
 export EDITOR='vim'
 
 export PATH=.:/home/deshwal/bin:$PATH
-export LC_ALL=C
+#export LC_ALL=C
 
 export HISTSIZE=100000000
 export HISTFILESIZE=1000000000
@@ -121,7 +121,17 @@ function scons() {
     false
   fi
 }
-export SCALIGENT="/usr/local/scaligent"
-export JAVA_HOME=$SCALIGENT/toolchain/jvm/jdk1.7
+export SCALIGENT=/usr/local/scaligent
+export SCALIGENT_TOOLCHAIN=$SCALIGENT/toolchain
+export JAVA_HOME=$SCALIGENT/toolchain/jvm/jdk1.7.0_06
 export MAVEN_HOME=$SCALIGENT/toolchain/apache-maven/apache-maven-3.0.4
-export PATH=$MAVEN_HOME/bin:$JAVA_HOME:$PATH
+export TOMCAT_INSTALL_DIR=/usr/local/scaligent/toolchain/apache-tomcat/apache-tomcat-7.0.30
+export GIT_ROOT=/home/deshwal/work/a.scaligent
+export CLASSPATH=$GIT_ROOT/callosum/common/target/callosum-common-1.0-SNAPSHOT.jar:$GIT_ROOT/callosum/metadata/target/callosum-metadata-1.0-SNAPSHOT.jar:$GIT_ROOT/callosum/data/target
+export PHANTOM_DIR=/usr/local/scaligent/software/phantomjs/bin
+export PATH=$MAVEN_HOME/bin:$JAVA_HOME:$PHANTOM_DIR:$PATH
+
+export LANG="en_US.UTF-8"
+export SUPPORTED="$LANG:en_US:en"
+
+

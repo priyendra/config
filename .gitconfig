@@ -4,7 +4,6 @@
   vdiffp = !git vdiff "$1"~
   diffp = !git diff "$1"~
   graph = log --graph --pretty=oneline --decorate --abbrev-commit
-  quickstatus = !git status $(ls -ad | grep -v "third-party")
 [color]
   ui = true
   branch = true
@@ -16,4 +15,6 @@
   pretty = short
 [user]
   name = deshwal
-  email = deshwal@scaligent.com
+  email = deshwal@thoughtspot.com
+[core]
+  preloadindex = true
