@@ -97,8 +97,10 @@ function setup_prompt {
   local HOST=$(hostname)
   if [ $HOST == "dmon" ]; then
     HOSTCOLOR="$GREEN"
-  elif [ $HOST == "dmon-ntx" ]; then
+  elif [ $HOST == "evon" ]; then
     HOSTCOLOR="$YELLOW"
+  elif [ $HOST == "dmon-ntx" ]; then
+    HOSTCOLOR="$ORANGE"
   else
     HOSTCOLOR="$RED"
   fi
