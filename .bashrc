@@ -136,4 +136,6 @@ export PATH=$MAVEN_HOME/bin:$JAVA_HOME:$PHANTOM_DIR:$PATH
 export LANG="en_US.UTF-8"
 export SUPPORTED="$LANG:en_US:en"
 
+alias mountevon="sshfs evon:/ /evon"
+alias mountdmon="sshfs dmon:/ /dmon"
 
