@@ -1,1 +1,0 @@
-./build-dbg/falcon/query/falcon_worker_main --v=3 --log_dir=/tmp --alsologtostderr  --falcon_worker_use_repository --falcon_worker_repository_config=./falcon/repository/testdata/tpch.5K/repository.config
