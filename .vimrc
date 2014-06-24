@@ -81,6 +81,7 @@ nmap . <C-w>w
 nmap < :bprevious<CR>
 nmap > :bnext<CR>
 nmap :E :e <C-R>=expand("%")<CR>
+nmap :D :e <C-R>=fnamemodify(expand("%"), ":p:h")."/"<CR>
 nmap <F3> :botright cwindow<CR>20<C-W>+
 
 " Highlight trailing whitespace
@@ -140,7 +141,7 @@ let g:clang_library_path='/usr/local/scaligent/toolchain/crosstool/v2/clang/3.4/
 set completeopt=menu
 
 " Enable syntax checking for cpp files
-function CppErrorsFn()
+function! CppErrorsFn()
   :silent execute ":! /usr/local/scaligent/toolchain/crosstool/v2/clang/3.4/bin/clang-check -extra-arg=-std=c++11 -extra-arg=-Wall -extra-arg=-Wextra -extra-arg=-Werror -extra-arg=-Wno-sign-compare -extra-arg=-Wno-unused-parameter -extra-arg=-Wno-deprecated-register -extra-arg=-Wno-unknown-pragmas -extra-arg=-Wno-constexpr-not-const -extra-arg=-Wno-mismatched-tags -extra-arg=-Wno-unused-function -extra-arg=-fno-omit-frame-pointer -extra-arg=-mpopcnt -extra-arg=-D_GNU_SOURCE -extra-arg=-D__STDC_CONSTANT_MACROS -extra-arg=-D__STDC_FORMAT_MACROS -extra-arg=-D__STDC_LIMIT_MACROS -extra-arg=-DGTEST_USE_OWN_TR1_TUPLE=0 -extra-arg=-Dlinux -extra-arg=-g3 -extra-arg=-DGLIBCXX_DEBUG -extra-arg=-I. -extra-arg=-Ibuild-out/net/rpc -extra-arg=-Ibuild-out/build-out -extra-arg=-Ibuild-out -extra-arg=-I/usr/local/scaligent/toolchain/local/include -extra-arg=-I/usr/local/scaligent/toolchain/local/include/libevent -extra-arg=-I/usr/local/scaligent/toolchain/local/include/simba -extra-arg=-Ibuild-out/third-party/gtest/gtest-1.7.0/include -extra-arg=-Ithird-party/gtest/gtest-1.7.0/include -extra-arg=-Ibuild-out/third-party/gmock/gmock-1.7.0/include -extra-arg=-Ithird-party/gmock/gmock-1.7.0/include % -- 2> /tmp/cpperrors"
   :redraw!
   if v:shell_error != 0

@@ -31,7 +31,7 @@ hi PMenuSel       guifg=NONE     guibg=#000088   gui=NONE
 hi PMenuSbar      guifg=NONE     guibg=#222222   gui=NONE
 hi PMenuThumb     guifg=NONE     guibg=#777777   gui=NONE
 hi Question       guifg=#B6D471  guibg=NONE      gui=NONE
-hi Search         guifg=#ff5555  guibg=NONE      gui=bold
+hi Search         guifg=#ffff00  guibg=NONE      gui=NONE
 hi SignColumn     guifg=#B6D471  guibg=NONE      gui=NONE
 hi SpecialKey     guifg=#B6D471  guibg=NONE      gui=NONE
 hi StatusLine     guifg=#000000  guibg=#FFFFFF   gui=NONE
