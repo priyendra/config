@@ -10,6 +10,12 @@ set hlsearch
 set ignorecase
 set smartcase
 
+" cursor line
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+set cursorline
+hi CursorLine     guifg=NONE     guibg=#3E3E3E   gui=NONE
+
 " Key mappings
 nmap <F2> :vsplit<CR>
 nmap , <C-w>W

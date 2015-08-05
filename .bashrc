@@ -17,6 +17,7 @@ function select_screen {
     tput sgr0
     read SELECTED_SESSION
     if [ ${#SELECTED_SESSION} -ne 0 ]; then
+      export SELECTED_SESSION
       echo -e -n "\033]0;${SELECTED_SESSION}\007"
       EXISTING_SESSION=$(echo "$SCREEN_SESSIONS" | /bin/egrep "[0-9]*\.$SELECTED_SESSION[[:space:]]" | awk --source '{print $1}')
       if [ ${#EXISTING_SESSION} -eq 0 ]; then
@@ -52,6 +53,8 @@ alias g++='g++ --std=c++0x'
 alias allcolors='for code in {0..255}; do echo -e "\e[38;05;${code}m $code: Test"; done'
 alias m='monitor'
 alias git='monitor git'
+alias vless='/usr/share/vim/vim74/macros/less.sh'
+alias vmore='/usr/share/vim/vim74/macros/less.sh'
 
 export EDITOR='vim'
 
@@ -73,7 +76,6 @@ function prompt_command {
 
   #   Add all the accessories below ...
   local temp="[xx:xx:xx ${username}@${hostname}:${PWD}]"
-
   let fillsize=${TERMWIDTH}-${#temp}
   newPWD="${PWD}"
 
@@ -138,4 +140,13 @@ export SUPPORTED="$LANG:en_US:en"
 
 alias mountevon="sshfs evon:/ /evon"
 alias mountdmon="sshfs dmon:/ /dmon"
-
+function ssha() {
+  sshpass -pth0ughtSp0t ssh admin@$@ || ssh admin@$@
+}
+function scpa() {
+  sshpass -pth0ughtSp0t scp $@ || scp $@
+}
+export FALCONREV="%r=nipun@thoughtspot.com,r=shikhar@thoughtspot.com,r=sanjay@thoughtspot.com,r=igor.demura@thoughtspot.com"
+function cppgrep() {
+  find ./ -name SConscript | sed -e s/'SConscript'//g | sort -u | while read dir; do find $dir -type f -maxdepth 1 -exec grep -H $@ {} \;; done
+}

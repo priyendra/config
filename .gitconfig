@@ -10,7 +10,7 @@
   diff = true
   interactive = true
 [treediff]
-  tool = vimdiff.py
+  tool = vimdiff.sh
 [format]
   pretty = short
 [user]
