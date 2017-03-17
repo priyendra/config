@@ -12,7 +12,7 @@ function! DiffPrev()
 endfunction
 
 map <c-n> <c-[>:call DiffNext()<cr>
-map <c-p> :DirDiffPrev<cr>wincmd t<cr>
+map <c-p> <c-[>:call DiffPrev()<cr>
 map <c-j> ]c
 map <c-k> [c
 
