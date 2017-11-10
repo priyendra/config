@@ -24,7 +24,7 @@ import sys
 import vim
 
 # Change this to the full path if clang-format is not on the path.
-binary = '/usr/local/scaligent/toolchain/crosstool/v2/clang/3.4/bin/clang-format'
+binary = '/usr/local/scaligent/toolchain/crosstool/v4/clang/3.7/bin/clang-format'
 
 # Change this to format according to other formatting styles. See the output of
 # 'clang-format --help' for a list of supported styles. The default looks for

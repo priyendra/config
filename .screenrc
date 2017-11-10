@@ -7,3 +7,4 @@ caption always '%{= kW}%-w%{= Kd}%n %t%{-}%+w '
 bindkey ^[[1;3D prev # alt left
 bindkey ^[[1;3C next # alt right
 maptimeout 0
+altscreen on

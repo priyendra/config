@@ -4,6 +4,7 @@
   vdiffp = !git vdiff "$1"~
   diffp = !git diff "$1"~
   graph = log --graph --pretty=oneline --decorate --abbrev-commit
+  changeids = !git log --abbrev-commit --format=fuller | egrep \"(^commit [0-9a-z]*$)|(^ *Change-Id: I[0-9a-z]*$)\" | less
 [color]
   ui = true
   branch = true

@@ -55,6 +55,7 @@ alias m='monitor'
 alias git='monitor git'
 alias vless='/usr/share/vim/vim74/macros/less.sh'
 alias vmore='/usr/share/vim/vim74/macros/less.sh'
+alias number="awk '{printf(\"%d: %s\\n\", NR - 1, \$0);}'"
 
 export EDITOR='vim'
 
@@ -119,6 +120,8 @@ select_screen
 ################################################################################
 #                          SCALIGENT SPECIFIC STUFF                            #
 ################################################################################
+export SCONS_THREADS=24
+export TS_SCONS_THREADS=24
 function scons() {
   monitor /usr/bin/scons $@ 2>&1 | tee scons/scons.log
   if [ ${PIPESTATUS[0]} -ne 0 ]; then
@@ -127,26 +130,34 @@ function scons() {
 }
 export SCALIGENT=/usr/local/scaligent
 export SCALIGENT_TOOLCHAIN=$SCALIGENT/toolchain
-export JAVA_HOME=$SCALIGENT/toolchain/jvm/jdk1.7.0_06
+export JAVA_HOME=$SCALIGENT/toolchain/jvm/jdk1.8
 export MAVEN_HOME=$SCALIGENT/toolchain/apache-maven/apache-maven-3.0.4
 export TOMCAT_INSTALL_DIR=/usr/local/scaligent/toolchain/apache-tomcat/apache-tomcat-7.0.30
 export GIT_ROOT=/home/deshwal/work/a.scaligent
 export CLASSPATH=$GIT_ROOT/callosum/common/target/callosum-common-1.0-SNAPSHOT.jar:$GIT_ROOT/callosum/metadata/target/callosum-metadata-1.0-SNAPSHOT.jar:$GIT_ROOT/callosum/data/target
 export PHANTOM_DIR=/usr/local/scaligent/software/phantomjs/bin
 export PATH=$MAVEN_HOME/bin:$JAVA_HOME:$PHANTOM_DIR:$PATH
+export PPROF_PATH=/usr/local/scaligent/toolchain/local/bin/pprof
 
 export LANG="en_US.UTF-8"
 export SUPPORTED="$LANG:en_US:en"
 
+alias devdocker="./git_scripts/devdocker"
+alias dde="devdocker exec default"
+alias dds="devdocker shell default"
 alias mountevon="sshfs evon:/ /evon"
 alias mountdmon="sshfs dmon:/ /dmon"
 function ssha() {
-  sshpass -pth0ughtSp0t ssh admin@$@ || ssh admin@$@
+  sshpass -pth0ughtSp0t ssh admin@$@
+  # The error code 6 is common for us if the host is not in known hosts file.
+  if (($? == 6)); then
+    ssh admin@$@
+  fi
 }
 function scpa() {
   sshpass -pth0ughtSp0t scp $@ || scp $@
 }
-export FALCONREV="%r=nipun@thoughtspot.com,r=shikhar@thoughtspot.com,r=sanjay@thoughtspot.com,r=igor.demura@thoughtspot.com"
+export FALCONREV="%r=nipun@thoughtspot.com,r=prateek@thoughtspot.com,r=eric.musser@thoughtspot.com,r=ravi.inguva@thoughtspot.com"
 function cppgrep() {
-  find ./ -name SConscript | sed -e s/'SConscript'//g | sort -u | while read dir; do find $dir -type f -maxdepth 1 -exec grep -H $@ {} \;; done
+  find ./ -name SConscript | sed -e s/'SConscript'//g | sort -u | while read dir; do find $dir -type f -maxdepth 1 -exec egrep -H "$@" {} \;; done
 }

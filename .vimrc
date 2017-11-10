@@ -11,6 +11,10 @@ set equalalways
 set wildmode=longest,list,full
 set wildmenu
 
+" required for markdown editing
+filetype plugin on
+au BufRead,BufNewFile *.md set filetype=markdown
+
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 set cursorline
@@ -74,7 +78,7 @@ set undofile
 
 let html_no_rendering=1
 
-function! RelativeNumberToggle()
+function! RelativeNumberingToggle()
   if (&relativenumber == 1) 
     set norelativenumber
   else
@@ -84,13 +88,13 @@ endfunc
 
 " Key mappings
 nmap * g*
-nmap r :call RelativeNumberToggle()<CR>
+nmap r :call RelativeNumberingToggle()<CR>
 nmap & $ze
 nmap <F2> :vsplit<CR>
-nmap , <C-w>W
-nmap . <C-w>w
-nmap < :bprevious<CR>
-nmap > :bnext<CR>
+noremap , <C-w>W
+noremap . <C-w>w
+noremap < :bprevious<CR>
+noremap > :bnext<CR>
 nmap :E :e <C-R>=expand("%")<CR>
 nmap :D :e <C-R>=fnamemodify(expand("%"), ":p:h")."/"<CR>
 nmap <F3> :botright cwindow<CR>20<C-W>+
@@ -106,7 +110,6 @@ command! SaveSession execute "mksession! /tmp/vimbook.vim"
 " A command to disable auto indentation for the current file.
 command! NoAutoIndent execute "setl noai nocin nosi inde="
 
-command! GitRevert execute "! git checkout " . shellescape(expand('%', 1))
 command! GitDiff   execute "! git vdiff -- " . shellescape(expand('%', 1))
 
 " Enclose a range in #if 0 ... #endif
@@ -114,9 +117,6 @@ command! -range=% CComment :normal `<i#if 0<CR><ESC> `>a<CR>#endif<ESC>
 
 " Custom auto complete behavior.
 set complete-=i
-
-"Set the clipboard to ensure that we get copy paste work across mac.
-set clipboard=unnamedplus
 
 " With C++11, we do not need to mark the curly brace as an error.
 let c_no_curly_error=1
@@ -128,7 +128,7 @@ command! SConsErrors execute ":cfile scons/scons.log"
 
 " Command for linting the file in the current buffer.
 function! CppLintFn()
-  silent ! cpplint.py % 2> /tmp/cpplint.errors
+  silent ! cpplint.py --filter=-readability/alt_tokens,-build/c++11 % 2> /tmp/cpplint.errors
   :redraw!
   if v:shell_error
     cfile /tmp/cpplint.errors
@@ -151,13 +151,13 @@ imap <C-K> <ESC>:pyf /home/deshwal/.vim/plugin/clang-format.py<CR>i
 
 " Config for clang complete
 let g:clang_complete_auto=0
-" let g:clang_library_path='/usr/local/scaligent/toolchain/crosstool/v2/clang/3.4/lib'
+" let g:clang_library_path='/usr/local/scaligent/toolchain/crosstool/v4/clang/3.7/lib'
 let g:clang_library_path='/home/deshwal/bin'
 set completeopt=menu
 
 " Enable syntax checking for cpp files
 function! CppErrorsFn()
-  :silent execute ":! /usr/local/scaligent/toolchain/crosstool/v2/clang/3.4/bin/clang-check -extra-arg=-std=c++11 -extra-arg=-Wall -extra-arg=-Wextra -extra-arg=-Werror -extra-arg=-Wno-unused-const-variable -extra-arg=-Wno-sign-compare -extra-arg=-Wno-unused-parameter -extra-arg=-Wno-deprecated-register -extra-arg=-Wno-unknown-pragmas -extra-arg=-Wno-constexpr-not-const -extra-arg=-Wno-mismatched-tags -extra-arg=-Wno-unused-function -extra-arg=-fno-omit-frame-pointer -extra-arg=-mpopcnt -extra-arg=-D_GNU_SOURCE -extra-arg=-D__STDC_CONSTANT_MACROS -extra-arg=-D__STDC_FORMAT_MACROS -extra-arg=-D__STDC_LIMIT_MACROS -extra-arg=-DGTEST_USE_OWN_TR1_TUPLE=0 -extra-arg=-Dlinux -extra-arg=-g3 -extra-arg=-DGLIBCXX_DEBUG -extra-arg=-I. -extra-arg=-Ibuild-out/net/rpc -extra-arg=-Ibuild-out/build-out -extra-arg=-Ibuild-out -extra-arg=-I/usr/local/scaligent/toolchain/local/include -extra-arg=-I/usr/local/scaligent/toolchain/local/include/libevent -extra-arg=-I/usr/local/scaligent/toolchain/local/include/simba -extra-arg=-Ibuild-out/third-party/gtest/gtest-1.7.0/include -extra-arg=-Ithird-party/gtest/gtest-1.7.0/include -extra-arg=-Ibuild-out/third-party/gmock/gmock-1.7.0/include -extra-arg=-Ithird-party/gmock/gmock-1.7.0/include % -- 2> /tmp/cpperrors"
+  :silent execute ":! /usr/local/scaligent/toolchain/crosstool/v4/clang/3.7/bin/clang-check -extra-arg=-std=c++14 -extra-arg=-Wall -extra-arg=-Wextra -extra-arg=-Werror -extra-arg=-Wno-unused-const-variable -extra-arg=-Wno-unused-local-typedef -extra-arg=-Wno-inconsistent-missing-override -extra-arg=-Wno-sign-compare -extra-arg=-Wno-unused-parameter -extra-arg=-Wno-deprecated-register -extra-arg=-Wno-unknown-pragmas -extra-arg=-Wno-constexpr-not-const -extra-arg=-Wno-mismatched-tags -extra-arg=-Wno-unused-function -extra-arg=-Wnon-virtual-dtor -extra-arg=-fno-omit-frame-pointer -extra-arg=-mpopcnt -extra-arg=-D_GNU_SOURCE -extra-arg=-D__STDC_CONSTANT_MACROS -extra-arg=-D__STDC_FORMAT_MACROS -extra-arg=-D__STDC_LIMIT_MACROS -extra-arg=-DGTEST_USE_OWN_TR1_TUPLE=0 -extra-arg=-Dlinux -extra-arg=-g3 -extra-arg=-DGLIBCXX_DEBUG -extra-arg=-I. -extra-arg=-Ibuild-out/net/rpc -extra-arg=-Ibuild-out/build-out -extra-arg=-Ibuild-out -extra-arg=-I/usr/local/scaligent/toolchain/local/include -extra-arg=-I/usr/local/scaligent/toolchain/local/include/libevent -extra-arg=-I/usr/local/scaligent/toolchain/local/include/simba -extra-arg=-Ibuild-out/third-party/gtest/gtest-1.7.0/include -extra-arg=-Ithird-party/gtest/gtest-1.7.0/include -extra-arg=-Ibuild-out/third-party/gmock/gmock-1.7.0/include -extra-arg=-Ithird-party/gmock/gmock-1.7.0/include % -- 2> /tmp/cpperrors"
   :redraw!
   if v:shell_error != 0
     cfile /tmp/cpperrors
@@ -167,6 +167,8 @@ function! CppErrorsFn()
 endfunction
 command! CppErrors call CppErrorsFn()
 
+" --------------------- EXPERIMENTAL STUFF BELOW THIS LINE ---------------------
+
 " Experimental. Let us see if this setting proves useful.
 inoremap jj <Esc>
 
@@ -175,3 +177,6 @@ map [H <Home>
 imap [H <Home>
 map [F <End>
 imap [F <End>
+
+command! -range=% CopyClipboard execute ":<line1>,<line2>w! /tmp/clipboard"
+map // /<C-r>"<CR>
