@@ -1,2 +1,0 @@
-#! /bin/bash
-gnome-terminal -x sh -c "ssh -X evon"
