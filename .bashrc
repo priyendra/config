@@ -40,7 +40,12 @@ fi
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
-alias ls='ls -G'
+# The command for colorized ls is different on mac/linux
+if [[ $(uname -a) == Darwin* ]]; then
+  alias ls='ls -G'
+else
+  alias ls='ls --color'
+fi
 alias grep='egrep --color=auto'
 alias dmux='tmux attach || tmux new -s default'
 
