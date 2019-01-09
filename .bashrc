@@ -74,7 +74,7 @@ if [[ $- == *i* ]]; then
   # bind stuff only works in interactive mode.
   bind 'set show-mode-in-prompt on'
   bind 'set vi-cmd-mode-string "\1\e[38;5;245m\2$$ "'
-  bind 'set vi-ins-mode-string "\1\e[38;5;198m\2>>\1\e[0m\2 "'
+  bind 'set vi-ins-mode-string "\1\e[38;5;10m\2>>\1\e[0m\2 "'
   bind 'set keyseq-timeout 0'  # timeout for esc key
   trap 'echo -ne "\e[0m"' DEBUG
   # Enable auto-completing directory symlinks with a trailing /
