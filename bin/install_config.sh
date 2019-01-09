@@ -12,7 +12,7 @@ do
   if [ "$FILE" != "." -a "$FILE" != ".." -a "$FILE" != ".git" ];
   then
     SRC="$PWD/$FILE"
-    DST="~/$FILE"
+    DST="$HOME/$FILE"
     rm -f "$DST"
     ln -s "$SRC" "$DST"
   fi
