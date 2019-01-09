@@ -31,7 +31,11 @@ HISTFILESIZE=1000000000
 HISTCONTROL=ignoredups:erasedups
 HISTFILE=~/.bash_history_unlimited
 PROMPT_COMMAND="prompt_fn"
-PS1="$(color256 198)[\t \u@\h \${prompt_pwd}]\[\033[0m\]"$'\n'
+if [ "$HOSTNAME" = "Priyendras-MacBook-Pro.local" ]; then
+  PS1="$(color256 198)[\t \u@\h \${prompt_pwd}]\[\033[0m\]"$'\n'
+else
+  PS1="$(color256 33)[\t \u@\h \${prompt_pwd}]\[\033[0m\]"$'\n'
+fi
 
 alias rm='rm -i'
 alias mv='mv -i'
