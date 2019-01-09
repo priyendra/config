@@ -42,10 +42,6 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias ls='ls -G'
 alias grep='egrep --color=auto'
-
-# Enable auto-completing directory symlinks with a trailing /
-bind 'set mark-symlinked-directories on'
-
 alias dmux='tmux attach || tmux new -s default'
 
 # Compass stuff
@@ -74,8 +70,13 @@ alias dexec='devdocker/devdocker exec -i'
 
 # Vi editing mode
 set -o vi
-bind 'set show-mode-in-prompt on'
-bind 'set vi-cmd-mode-string "\1\e[38;5;245m\2$$ "'
-bind 'set vi-ins-mode-string "\1\e[38;5;198m\2>>\1\e[0m\2 "'
-bind 'set keyseq-timeout 0'  # timeout for esc key
-trap 'echo -ne "\e[0m"' DEBUG
+if [[ $- == *i* ]]; then
+  # bind stuff only works in interactive mode.
+  bind 'set show-mode-in-prompt on'
+  bind 'set vi-cmd-mode-string "\1\e[38;5;245m\2$$ "'
+  bind 'set vi-ins-mode-string "\1\e[38;5;198m\2>>\1\e[0m\2 "'
+  bind 'set keyseq-timeout 0'  # timeout for esc key
+  trap 'echo -ne "\e[0m"' DEBUG
+  # Enable auto-completing directory symlinks with a trailing /
+  bind 'set mark-symlinked-directories on'
+fi
