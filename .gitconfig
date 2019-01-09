@@ -5,7 +5,7 @@
 [diff]
     tool = default-difftool
 [difftool "default-difftool"]
-    cmd = /Users/deshwal/bin/vimdiff $LOCAL $REMOTE
+    cmd = ~/bin/vimdiff $LOCAL $REMOTE
 [color]
   ui = true
   branch = true

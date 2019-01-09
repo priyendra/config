@@ -25,11 +25,11 @@ function mdp() {
 shopt -s histappend
 
 EDITOR='vim'
-PATH="/Users/deshwal/bin:$PATH"
+PATH="~/bin:$PATH"
 HISTSIZE=100000000
 HISTFILESIZE=1000000000
 HISTCONTROL=ignoredups:erasedups
-HISTFILE=/Users/deshwal/.bash_history_unlimited
+HISTFILE=~/.bash_history_unlimited
 PROMPT_COMMAND="prompt_fn"
 PS1="$(color256 198)[\t \u@\h \${prompt_pwd}]\[\033[0m\]"$'\n'
 
@@ -50,7 +50,7 @@ export PATH="/usr/local/bin:${PATH}"
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-export CREDENTIALS_FILE=/Users/deshwal/credentials
+export CREDENTIALS_FILE=~/credentials
 export GITROOT=$HOME/development
 
 # tezdb stuff
