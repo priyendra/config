@@ -1,1 +1,5 @@
-let g:netrw_dirhistmax  =0
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/deshwal/work/folly/folly/executors/task_queue'
+let g:netrw_dirhist_2='/Users/deshwal/work/tezdb'
+let g:netrw_dirhist_3='/Users/deshwal/work/tezdb/reactor'

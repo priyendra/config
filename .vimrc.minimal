@@ -1,14 +1,6 @@
-" make sure that windows always remain equal in size.
-set equalalways
-
-" set a dark background by default.
-set background=dark
-
-" search related
-set incsearch
-set hlsearch
-set ignorecase
-set smartcase
+set equalalways " make sure that windows always remain equal in size.
+set background=light " set a light background by default.
+set incsearch hlsearch ignorecase smartcase " search related
 
 " Key mappings
 nmap <F2> :vsplit<CR>

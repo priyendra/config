@@ -16,8 +16,9 @@ map <c-p> <c-[>:call DiffPrev()<cr>
 map <c-j> ]c
 map <c-k> [c
 
-colorscheme deshwalReadOnly
 set diffopt=filler,context:100000  " disable folding in diff windows
+set nocursorline
+autocmd WinEnter * setlocal nocursorline
 EOF
 vim -R -f -c "source $FILENAME" \
           -c "DirDiff $1 $2"    \

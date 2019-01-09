@@ -1,163 +1,77 @@
-#! /bin/bash
-
-function select_screen {
-  UNDER_SCREEN=$(ps afxwww | grep $PPID | grep -i screen)
-  INTERACTIVE=$(echo $- | grep i)
-  if [ ${#UNDER_SCREEN} -eq 0 -a ${#INTERACTIVE} -ne 0 ]; then
-    SCREEN_SESSIONS=$(screen -list | /bin/egrep "Attached|Detached")
-    if [ ${#SCREEN_SESSIONS} -ne 0 ]; then
-      echo -e "\033[1m  List of screen sessions:\033[0m"
-      tput sgr0
-      echo "$SCREEN_SESSIONS" | sed -e s/'^'/'  '/g
-    else
-      echo -e "\033[1m  No screens found. Perhaps create a new one?\033[0m"
-      tput sgr0
-    fi
-    echo -e -n "\033[1m  Enter screen session name, or press ENTER to skip screen: \033[0m"
-    tput sgr0
-    read SELECTED_SESSION
-    if [ ${#SELECTED_SESSION} -ne 0 ]; then
-      export SELECTED_SESSION
-      echo -e -n "\033]0;${SELECTED_SESSION}\007"
-      EXISTING_SESSION=$(echo "$SCREEN_SESSIONS" | /bin/egrep "[0-9]*\.$SELECTED_SESSION[[:space:]]" | awk --source '{print $1}')
-      if [ ${#EXISTING_SESSION} -eq 0 ]; then
-        screen -S $SELECTED_SESSION
-      else
-        screen -r -d -S "$EXISTING_SESSION"
-      fi
-    fi
-  fi
-}
-
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
-
-shopt -s histappend
-
-export GREP_COLORS='ms=01;32:mc=01;32:sl=:cx=:fn=01;35:ln=32:bn=32:se=36'
-export SSH_AUTH_SOCK=''
-
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp='cp -i'
-alias ls='ls --color=auto'
-#alias awk='awk --file=/home/deshwal/bin/utils.awk'
-alias grep="/bin/egrep --color=auto"
-alias renderhtml='sed -e s/"<br>"/"\n"/g | sed -e s/"<p>"/"\n"/g | sed -e s/"<\/p>"/"\n"/g | sed -e s/"<\/tr>"/"\n"/g | sed -e s/"<\/th>"/"\t"/g | sed -e s/"<\/td>"/"\t"/g | sed -e s/"<[^>]*>"//g | sed -e /"^[ \t]*$"/d | sed -e s/"\t\t*"/"\t"/g | sed -e s/"&nbsp;"/" "/g'
-alias dropblanklines='sed -e /"^[ \t]*$"/d'
-alias eatnewlines="perl -e 'while (<>) {chomp(\$_); print \$_;}'"
-alias pycalc='python -E'
-alias g++='g++ --std=c++0x'
-alias allcolors='for code in {0..255}; do echo -e "\e[38;05;${code}m $code: Test"; done'
-alias m='monitor'
-alias git='monitor git'
-alias vless='/usr/share/vim/vim74/macros/less.sh'
-alias vmore='/usr/share/vim/vim74/macros/less.sh'
-alias number="awk '{printf(\"%d: %s\\n\", NR - 1, \$0);}'"
-
-export EDITOR='vim'
-
-export PATH=.:/home/deshwal/bin:$PATH
-#export LC_ALL=C
-
-export HISTSIZE=100000000
-export HISTFILESIZE=1000000000
-export HISTCONTROL=erasedups
-export HISTFILE=/home/deshwal/.bash_history_unlimited
-
-# Get my custom bash prompt
-hostname=$(hostname -s)
-username=$(whoami)
-
-function prompt_command {
-  #   Find the width of the terminal
-  TERMWIDTH=${COLUMNS}
-
-  #   Add all the accessories below ...
-  local temp="[xx:xx:xx ${username}@${hostname}:${PWD}]"
-  let fillsize=${TERMWIDTH}-${#temp}
-  newPWD="${PWD}"
-
+function prompt_fn {
+  history -a
+  hostname=$(hostname -s)
+  username=$(whoami)
+  termwidth=${COLUMNS}
+  local temp="[xx:xx:xx ${username}@${hostname}:${prompt_pwd}]"
+  let fillsize=${termwidth}-${#temp}
+  prompt_pwd="${PWD}"
   if [ "$fillsize" -lt "0" ]
   then
     fill=""
     let cut=5-${fillsize}
-    newPWD=" ... ${PWD:${cut}}"
+    prompt_pwd=" ... ${PWD:${cut}}"
   fi
 }
-
-PROMPT_COMMAND="history -a && prompt_command"
-
-function setup_prompt {
-  local NO_COLOR="\[\033[0m\]"
-  local ORANGE="\e[38;05;202m"
-  local GREEN="\e[38;05;46m"
-  local YELLOW="\e[38;05;227m"
-  local BLUE="\e[38;05;75m"
-  local PINK="\e[38;05;213m"
-  local HOST=$(hostname)
-  if [ $HOST == gbon* ]; then
-    HOSTCOLOR="$GREEN"
-  elif [ $HOST == "evon" ]; then
-    HOSTCOLOR="$YELLOW"
-  elif [ $HOST == "fion" ]; then
-    HOSTCOLOR="$ORANGE"
-  else
-    HOSTCOLOR="$RED"
+function color256() { echo -ne "\[\033[38;5;$1m\]"; }
+function mdp() {
+  if [[ $# -ge 1 && ! -e "$1" ]]
+  then
+    touch "$1"
   fi
-  PS1="$HOSTCOLOR[\t $username@\$hostname \${newPWD}]
-$NO_COLOR>> "
+  open -a /Applications/Markdown\ Plus.app "$@"
 }
 
-setup_prompt
-select_screen
+shopt -s histappend
 
-# Enable git auto completion (disabled for now since it was quite painful).
-# source ~/.git-completion.bash
+EDITOR='vim'
+PATH="/Users/deshwal/bin:$PATH"
+HISTSIZE=100000000
+HISTFILESIZE=1000000000
+HISTCONTROL=ignoredups:erasedups
+HISTFILE=/Users/deshwal/.bash_history_unlimited
+PROMPT_COMMAND="prompt_fn"
+PS1="$(color256 198)[\t \u@\h \${prompt_pwd}]\[\033[0m\]"$'\n'
 
-################################################################################
-#                          SCALIGENT SPECIFIC STUFF                            #
-################################################################################
-export SCONS_THREADS=24
-export TS_SCONS_THREADS=24
-function scons() {
-  monitor /usr/bin/scons $@ 2>&1 | tee scons/scons.log
-  if [ ${PIPESTATUS[0]} -ne 0 ]; then
-    false
-  fi
-}
-export SCALIGENT=/usr/local/scaligent
-export SCALIGENT_TOOLCHAIN=$SCALIGENT/toolchain
-export JAVA_HOME=$SCALIGENT/toolchain/jvm/jdk1.8
-export MAVEN_HOME=$SCALIGENT/toolchain/apache-maven/apache-maven-3.0.4
-export TOMCAT_INSTALL_DIR=/usr/local/scaligent/toolchain/apache-tomcat/apache-tomcat-7.0.30
-export GIT_ROOT=/home/deshwal/work/a.scaligent
-export CLASSPATH=$GIT_ROOT/callosum/common/target/callosum-common-1.0-SNAPSHOT.jar:$GIT_ROOT/callosum/metadata/target/callosum-metadata-1.0-SNAPSHOT.jar:$GIT_ROOT/callosum/data/target
-export PHANTOM_DIR=/usr/local/scaligent/software/phantomjs/bin
-export PATH=$MAVEN_HOME/bin:$JAVA_HOME:$PHANTOM_DIR:$PATH
-export PPROF_PATH=/usr/local/scaligent/toolchain/local/bin/pprof
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
+alias ls='ls -G'
+alias grep='egrep --color=auto'
 
-export LANG="en_US.UTF-8"
-export SUPPORTED="$LANG:en_US:en"
+# Enable auto-completing directory symlinks with a trailing /
+bind 'set mark-symlinked-directories on'
 
-alias devdocker="./git_scripts/devdocker"
-alias dde="devdocker exec default"
-alias dds="devdocker shell default"
-alias mountevon="sshfs evon:/ /evon"
-alias mountdmon="sshfs dmon:/ /dmon"
-function ssha() {
-  sshpass -pth0ughtSp0t ssh admin@$@
-  # The error code 6 is common for us if the host is not in known hosts file.
-  if (($? == 6)); then
-    ssh admin@$@
-  fi
+alias dmux='tmux attach || tmux new -s default'
+
+# Compass stuff
+export GITROOT=$HOME/development
+export PATH="/usr/local/bin:${PATH}"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+export CREDENTIALS_FILE=/Users/deshwal/credentials
+export GITROOT=$HOME/development
+
+# tezdb stuff
+function dshell {
+  DIRECTORY=$(realpath .)
+  while [ $DIRECTORY != "/" ]; do
+    if [ -f $DIRECTORY/devdocker/devdocker ]; then
+      pushd $DIRECTORY > /dev/null
+      python devdocker/devdocker shell
+      popd > /dev/null
+    fi
+    DIRECTORY=$(dirname $DIRECTORY)
+  done
 }
-function scpa() {
-  sshpass -pth0ughtSp0t scp $@ || scp $@
-}
-export FALCONREV="%r=nipun@thoughtspot.com,r=prateek@thoughtspot.com,r=eric.musser@thoughtspot.com,r=ravi.inguva@thoughtspot.com"
-function cppgrep() {
-  find ./ -name SConscript | sed -e s/'SConscript'//g | sort -u | while read dir; do find $dir -type f -maxdepth 1 -exec egrep -H "$@" {} \;; done
-}
+alias devdocker='devdocker/devdocker'
+alias dexec='devdocker/devdocker exec -i'
+
+# Vi editing mode
+set -o vi
+bind 'set show-mode-in-prompt on'
+bind 'set vi-cmd-mode-string "\1\e[38;5;245m\2$$ "'
+bind 'set vi-ins-mode-string "\1\e[38;5;198m\2>>\1\e[0m\2 "'
+bind 'set keyseq-timeout 0'  # timeout for esc key
+trap 'echo -ne "\e[0m"' DEBUG

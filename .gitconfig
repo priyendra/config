@@ -1,17 +1,16 @@
 [alias]
   unstage = reset HEAD --
-  vdiff = !/home/deshwal/bin/git_vimdiff.pl
-  vdiffp = !git vdiff "$1"~
-  diffp = !git diff "$1"~
   graph = log --graph --pretty=oneline --decorate --abbrev-commit
   changeids = !git log --abbrev-commit --format=fuller | egrep \"(^commit [0-9a-z]*$)|(^ *Change-Id: I[0-9a-z]*$)\" | less
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = /Users/deshwal/bin/vimdiff $LOCAL $REMOTE
 [color]
   ui = true
   branch = true
   diff = true
   interactive = true
-[treediff]
-  tool = vimdiff.sh
 [format]
   pretty = short
 [user]
