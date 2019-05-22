@@ -18,3 +18,5 @@
   email = priyendra@gmail.com
 [core]
   preloadindex = true
+[push]
+	default = nothing

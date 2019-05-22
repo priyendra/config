@@ -1,5 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/Users/deshwal/work/folly/folly/executors/task_queue'
 let g:netrw_dirhist_2='/Users/deshwal/work/tezdb'
 let g:netrw_dirhist_3='/Users/deshwal/work/tezdb/reactor'
+let g:netrw_dirhist_4='/Users/deshwal/work/tezdb/devdocker/3rdparty/asio'
+let g:netrw_dirhist_5='/var/folders/15/nz8gkq9167bg6rn5r4jcfn_80000gp/T/git-difftool.mvJAq8/right/log'
+let g:netrw_dirhist_6='/Users/deshwal'
+let g:netrw_dirhist_7='/Users/deshwal/go/src/github.com/dinedal/textql/inputs'
+let g:netrw_dirhist_8='/Users/deshwal/go/src/github.com/dinedal/textql/sqlparser'
