@@ -16,7 +16,7 @@ set complete-=i  " Custom auto complete behavior.
 " highlight the current line, the 81st column and trailing white space.
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
-set cursorline colorcolumn=81
+set cursorline colorcolumn=79
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 

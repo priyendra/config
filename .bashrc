@@ -63,31 +63,23 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 export CREDENTIALS_FILE=~/credentials
 export GITROOT=$HOME/development
 
-# tezdb stuff
-function dshell {
-  DIRECTORY=$(realpath .)
-  while [ $DIRECTORY != "/" ]; do
-    if [ -f $DIRECTORY/devdocker/devdocker ]; then
-      pushd $DIRECTORY > /dev/null
-      python devdocker/devdocker shell
-      popd > /dev/null
-    fi
-    DIRECTORY=$(dirname $DIRECTORY)
-  done
-}
-alias devdocker='devdocker/devdocker'
-alias dexec='devdocker/devdocker exec -i'
-alias bzl='devdocker/devdocker exec -i bazel'
+# tezdb stuff - commented out for now.
+#function dshell {
+#  DIRECTORY=$(realpath .)
+#  while [ $DIRECTORY != "/" ]; do
+#    if [ -f $DIRECTORY/devdocker/devdocker ]; then
+#      pushd $DIRECTORY > /dev/null
+#      python devdocker/devdocker shell
+#      popd > /dev/null
+#    fi
+#    DIRECTORY=$(dirname $DIRECTORY)
+#  done
+#}
+#alias devdocker='devdocker/devdocker'
+#alias dexec='devdocker/devdocker exec -i'
+#alias bzl='devdocker/devdocker exec -i bazel'
 
 # Vi editing mode
-set -o vi
 if [[ $- == *i* ]]; then
-  # bind stuff only works in interactive mode.
-  bind 'set show-mode-in-prompt on'
-  bind 'set vi-cmd-mode-string "\1\e[38;5;245m\2$$ "'
-  bind 'set vi-ins-mode-string "\1\e[38;5;10m\2>>\1\e[0m\2 "'
-  bind 'set keyseq-timeout 0'  # timeout for esc key
   trap 'echo -ne "\e[0m"' DEBUG
-  # Enable auto-completing directory symlinks with a trailing /
-  bind 'set mark-symlinked-directories on'
 fi
