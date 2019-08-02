@@ -63,21 +63,22 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 export CREDENTIALS_FILE=~/credentials
 export GITROOT=$HOME/development
 
-# tezdb stuff - commented out for now.
-#function dshell {
-#  DIRECTORY=$(realpath .)
-#  while [ $DIRECTORY != "/" ]; do
-#    if [ -f $DIRECTORY/devdocker/devdocker ]; then
-#      pushd $DIRECTORY > /dev/null
-#      python devdocker/devdocker shell
-#      popd > /dev/null
-#    fi
-#    DIRECTORY=$(dirname $DIRECTORY)
-#  done
-#}
-#alias devdocker='devdocker/devdocker'
-#alias dexec='devdocker/devdocker exec -i'
-#alias bzl='devdocker/devdocker exec -i bazel'
+# devdocker shortcuts
+function dshell {
+  DIRECTORY=$(realpath .)
+  while [ $DIRECTORY != "/" ]; do
+    if [ -f $DIRECTORY/.devdockercfg ]; then
+      pushd $DIRECTORY > /dev/null
+      devdocker shell
+      popd > /dev/null
+    fi
+    DIRECTORY=$(dirname $DIRECTORY)
+  done
+}
+alias dexec='devdocker exec'
+function bzl() {
+  devdocker exec -i bazel $@ 2>&1 | tee /tmp/mybazel.out
+}
 
 # Vi editing mode
 if [[ $- == *i* ]]; then

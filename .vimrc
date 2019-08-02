@@ -68,3 +68,6 @@ set splitright
 let macvim_skip_colorscheme=1
 command! Markdown execute "silent !mdless 2>/dev/null ".expand('%:p') | execute ":redraw!"
 command! -nargs=+ -complete=file Grep silent execute "grep! <args>" | execute ":redraw!" | execute ":botright cwindow"
+command! -nargs=+ -complete=file Bzl silent execute "!devdocker exec bazel <args> 2>&1 | tee /tmp/mybazel.out" | silent execute ":cfile /tmp/mybazel.out" | execute ":redraw!" | execute ":botright cwindow"
+command! -complete=file BzlErrors silent execute ":cfile /tmp/mybazel.out" | execute ":redraw!" | execute ":botright cwindow"
+command! -nargs=+ -complete=file CodeGrep silent execute "!tools/codegrep <args> 2>&1 | tee /tmp/mycodegrep.out" | | silent execute ":cfile /tmp/mycodegrep.out" | execute ":redraw!" | execute ":botright cwindow"

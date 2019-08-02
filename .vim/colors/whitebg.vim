@@ -34,6 +34,7 @@ hi Visual           ctermfg=none  ctermbg=229  cterm=none
 hi MatchParen       ctermfg=NONE  ctermbg=224  cterm=NONE
 hi Search           ctermfg=none  ctermbg=224  cterm=none
 hi ExtraWhitespace  ctermfg=198   ctermbg=none cterm=reverse
+hi Todo             ctermfg=198   ctermbg=none cterm=NONE
 hi DiffAdd          ctermfg=NONE  ctermbg=158 cterm=NONE
 hi DiffDelete       ctermfg=NONE  ctermbg=224 cterm=NONE
 hi DiffChange       ctermfg=NONE  ctermbg=195 cterm=NONE
