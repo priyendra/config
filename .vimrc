@@ -71,3 +71,5 @@ command! -nargs=+ -complete=file Grep silent execute "grep! <args>" | execute ":
 command! -nargs=+ -complete=file Bzl silent execute "!devdocker exec bazel <args> 2>&1 | tee /tmp/mybazel.out" | silent execute ":cfile /tmp/mybazel.out" | execute ":redraw!" | execute ":botright cwindow"
 command! -complete=file BzlErrors silent execute ":cfile /tmp/mybazel.out" | execute ":redraw!" | execute ":botright cwindow"
 command! -nargs=+ -complete=file CodeGrep silent execute "!tools/codegrep <args> 2>&1 | tee /tmp/mycodegrep.out" | | silent execute ":cfile /tmp/mycodegrep.out" | execute ":redraw!" | execute ":botright cwindow"
+command! FuzzyOpen call fzf#run(fzf#wrap({'source': 'find -L . -type d \( -name "bazel-*" -o -name .git \) -prune -o -print'}))
+nmap ;fo :FuzzyOpen<CR>

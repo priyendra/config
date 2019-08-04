@@ -84,3 +84,7 @@ function bzl() {
 if [[ $- == *i* ]]; then
   trap 'echo -ne "\e[0m"' DEBUG
 fi
+
+# Fuzzy file completion mode.
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_OPTS="--extended --cycle --layout=reverse --border"
