@@ -16,7 +16,7 @@ set complete-=i  " Custom auto complete behavior.
 " highlight the current line, the 81st column and trailing white space.
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
-set cursorline colorcolumn=79
+set cursorline colorcolumn=76
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
@@ -25,13 +25,6 @@ filetype plugin indent on
 set expandtab tabstop=2 shiftwidth=2 softtabstop=2 indentkeys=<Tab>
 set autoindent smartindent cindent
 
-function! ToggleRelativeNumbering()
-  if (&relativenumber == 1)
-    set norelativenumber
-  else
-    set relativenumber
-  endif
-endfunc
 command! SaveSession execute "mksession! /tmp/vimbook.vim"
 command! NoAutoIndent execute "setl noai nocin nosi inde="
 command! GitDiff execute "! git vdiff -- " . shellescape(expand('%', 1))
@@ -39,7 +32,6 @@ command! GitDiff execute "! git vdiff -- " . shellescape(expand('%', 1))
 " Key mappings
 nmap * g*
 map <Tab> ^i<Tab><Esc>^
-nmap r :call ToggleRelativeNumbering()<CR>
 noremap < :bprevious<CR>
 noremap > :bnext<CR>
 nmap :E :e <C-R>=expand("%")<CR>
@@ -60,16 +52,43 @@ imap <C-K> <c-o>:pyf ~/.vim/plugin/clang-format.py<cr>
 " Experimental settings
 set wrap
 set showbreak=▸▸
-" set relativenumber
+set relativenumber
+set numberwidth=2
 set matchpairs+=<:>  " for matching c++ template brackets.
 set splitbelow
 set splitright
 
+" Open quickfix window automatically if there are valid errors/locations.
+augroup myvimrc
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost l*    lwindow
+augroup END
+" Always open the quickfix window at the bottom of the screen.
+:autocmd FileType qf wincmd J
+
 let macvim_skip_colorscheme=1
-command! Markdown execute "silent !mdless 2>/dev/null ".expand('%:p') | execute ":redraw!"
-command! -nargs=+ -complete=file Grep silent execute "grep! <args>" | execute ":redraw!" | execute ":botright cwindow"
-command! -nargs=+ -complete=file Bzl silent execute "!devdocker exec bazel <args> 2>&1 | tee /tmp/mybazel.out" | silent execute ":cfile /tmp/mybazel.out" | execute ":redraw!" | execute ":botright cwindow"
-command! -complete=file BzlErrors silent execute ":cfile /tmp/mybazel.out" | execute ":redraw!" | execute ":botright cwindow"
-command! -nargs=+ -complete=file CodeGrep silent execute "!tools/codegrep <args> 2>&1 | tee /tmp/mycodegrep.out" | | silent execute ":cfile /tmp/mycodegrep.out" | execute ":redraw!" | execute ":botright cwindow"
+
+command! -nargs=+ -complete=file BzlBuild cexpr system("devdocker exec bazel build ".<q-args>)
+command! -nargs=+ -complete=file BzlTest cexpr system("devdocker exec bazel test --test_output=errors ".<q-args>)
+command! -nargs=* -complete=file GitGrep cexpr system("git grep -n ".<q-args>)
+
 command! FuzzyOpen call fzf#run(fzf#wrap({'source': 'find -L . -type d \( -name "bazel-*" -o -name .git \) -prune -o -print'}))
+let g:fzf_colors =
+  \ { 'fg':    ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 nmap ;fo :FuzzyOpen<CR>
+" jsi = java skip imports i.e. positions cursor at the last import declaration
+nmap ;jsi gg?^import <CR>:noh<CR>zt
+nnoremap <Space> :

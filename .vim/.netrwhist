@@ -1,9 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/private/var/folders/15/nz8gkq9167bg6rn5r4jcfn_80000gp/T/git-difftool.Yezdek/right/devdocker/3rdparty'
-let g:netrw_dirhist_2='/Users/deshwal/work/zetasql/zetasql/public'
-let g:netrw_dirhist_3='/private/var/folders/15/nz8gkq9167bg6rn5r4jcfn_80000gp/T/git-difftool.X7iOMU/right/examples'
-let g:netrw_dirhist_4='/private/var/folders/15/nz8gkq9167bg6rn5r4jcfn_80000gp/T/git-difftool.X7iOMU/right/examples/gtest'
-let g:netrw_dirhist_5='/private/var/folders/15/nz8gkq9167bg6rn5r4jcfn_80000gp/T/git-difftool.GMOr69/right/bazel'
-let g:netrw_dirhist_6='/private/var/folders/15/nz8gkq9167bg6rn5r4jcfn_80000gp/T/git-difftool.fZH8ff/right/bazel'
-let g:netrw_dirhist_7='/Users/deshwal/development/urbancompass/src/java'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/deshwal/work'
+let g:netrw_dirhist_2='/Users/deshwal/work/intellij'
+let g:netrw_dirhist_3='/Users/deshwal/work/intellij/.idea'

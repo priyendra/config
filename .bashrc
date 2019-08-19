@@ -87,4 +87,13 @@ fi
 
 # Fuzzy file completion mode.
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_OPTS="--extended --cycle --layout=reverse --border"
+export FZF_DEFAULT_OPTS="--extended --layout=reverse --border"
+
+# Rewind up to git root directory.
+function gitcd() {
+  DIRECTORY=$(realpath .)
+  while [ ! -d $DIRECTORY/.git ]; do
+    cd ..
+    DIRECTORY=$(dirname $DIRECTORY)
+  done
+}

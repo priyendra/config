@@ -1,7 +1,6 @@
 [alias]
   unstage = reset HEAD --
   graph = log --graph --pretty=oneline --decorate --abbrev-commit
-  changeids = !git log --abbrev-commit --format=fuller | egrep \"(^commit [0-9a-z]*$)|(^ *Change-Id: I[0-9a-z]*$)\" | less
 [diff]
     tool = default-difftool
 [difftool "default-difftool"]
