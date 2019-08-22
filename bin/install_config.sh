@@ -13,7 +13,7 @@ do
   then
     SRC="$PWD/$FILE"
     DST="$HOME/$FILE"
-    rm -f "$DST"
+    rm -rf "$DST"
     ln -s "$SRC" "$DST"
   fi
 done

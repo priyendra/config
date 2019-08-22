@@ -24,13 +24,6 @@ function prompt_fn {
     PS1="$exit_code_str$(color256 33)[\t \u@\h \${prompt_pwd}]\[\033[0m\]"$'\n'
   fi
 }
-function mdp() {
-  if [[ $# -ge 1 && ! -e "$1" ]]
-  then
-    touch "$1"
-  fi
-  open -a /Applications/Markdown\ Plus.app "$@"
-}
 
 shopt -s histappend
 
