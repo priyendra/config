@@ -18,11 +18,7 @@ function prompt_fn {
     let cut=5-${fillsize}
     prompt_pwd=" ... ${PWD:${cut}}"
   fi
-  if [ "$HOSTNAME" = "Priyendras-MacBook-Pro.local" ]; then
-    PS1="$exit_code_str$(color256 198)[\t \u@\h \${prompt_pwd}]\[\033[0m\]"$'\n'
-  else
-    PS1="$exit_code_str$(color256 33)[\t \u@\h \${prompt_pwd}]\[\033[0m\]"$'\n'
-  fi
+  PS1="$exit_code_str$(color256 198)[\t \u@\h \${prompt_pwd}]\[\033[0m\]"$'\n'
 }
 
 shopt -s histappend
