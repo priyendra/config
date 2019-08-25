@@ -69,9 +69,16 @@ augroup END
 
 let macvim_skip_colorscheme=1
 
+function! ArgsOrWordUnderCursor(args)
+  if len(a:args) == 0
+    return expand('<cword>')
+  endif
+  return a:args
+endfunction
 command! -nargs=+ -complete=file BzlBuild cexpr system("devdocker exec bazel build ".<q-args>)
 command! -nargs=+ -complete=file BzlTest cexpr system("devdocker exec bazel test --test_output=errors ".<q-args>)
-command! -nargs=* -complete=file GitGrep cexpr system("git grep -n ".<q-args>)
+command! -nargs=* -complete=file GitGrep cexpr system("git grep -E -n ".ArgsOrWordUnderCursor(<q-args>))
+command! -nargs=* -complete=file JavaFind cexpr system("git grep -E -n '((class)\|(interface)\|(enum)) '".ArgsOrWordUnderCursor(<q-args>))
 
 command! FuzzyOpen call fzf#run(fzf#wrap({'source': 'find -L . -type d \( -name "bazel-*" -o -name .git \) -prune -o -print'}))
 let g:fzf_colors =
