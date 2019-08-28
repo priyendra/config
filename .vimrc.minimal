@@ -3,6 +3,5 @@ set background=light " set a light background by default.
 set incsearch hlsearch ignorecase smartcase " search related
 
 " Key mappings
-nmap <F2> :vsplit<CR>
 noremap , <C-w>W
 noremap . <C-w>w

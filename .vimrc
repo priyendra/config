@@ -98,4 +98,5 @@ let g:fzf_colors =
 nmap ;fo :FuzzyOpen<CR>
 " jsi = java skip imports i.e. positions cursor at the last import declaration
 nmap ;jsi gg?^import <CR>:noh<CR>zt
+nmap ;jctor gg/<C-R>=expand("%:t:r")<CR>(<CR>
 nnoremap <Space> :
