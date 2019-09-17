@@ -25,6 +25,7 @@ The next few steps are manual
 ### Upgrade to latest version of bash
 ```
 $ brew install bash
+$ brew install coreutils
 $ sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 $ chsh -s /usr/local/bin/bash
 $ sudo /sbin/reboot
