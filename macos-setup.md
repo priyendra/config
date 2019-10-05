@@ -13,7 +13,7 @@ $ brew install git
 $ cd
 $ mkdir -p work
 $ cd work
-$ git clone git@github.com:priyendra/config.git
+$ git clone https://github.com/priyendra/config.git
 ```
 
 ### Install and setup iterm2
@@ -45,3 +45,9 @@ $ ./bin/install_config.sh
 $ brew install fzf
 $ /usr/local/opt/fzf/install
 ```
+
+### Other steps
+- Install Google Chrome, Moom (from App Store), Karabiner Elements
+- In Moom, setup the keyboard shortcut
+- In Karabiner Elements, map Caps Lock to Escape and map right cmd + hjkl
+  to arrow keys
