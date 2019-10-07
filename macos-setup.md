@@ -46,6 +46,12 @@ $ brew install fzf
 $ /usr/local/opt/fzf/install
 ```
 
+### Tmux
+
+```
+$ brew install tmux
+```
+
 ### Other steps
 - Install Google Chrome, Moom (from App Store), Karabiner Elements
 - In Moom, setup the keyboard shortcut
