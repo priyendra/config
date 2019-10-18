@@ -53,7 +53,12 @@ $ /usr/local/opt/fzf/install
 $ brew install tmux
 $ brew install coreutils
 $ brew install clang-format
+$ brew install golang
 ```
+
+Also, after opening a go file, one will need to execute :GoInstallBinaries
+to get various binaries that are needed for vim-go plugin to properly
+function.
 
 ### Other steps
 - Install Google Chrome, Moom (from App Store), Karabiner Elements
