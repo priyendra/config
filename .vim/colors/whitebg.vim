@@ -33,10 +33,11 @@ hi VertSplit        ctermfg=251   ctermbg=251  cterm=none
 hi Visual           ctermfg=none  ctermbg=229  cterm=none
 hi MatchParen       ctermfg=none  ctermbg=224  cterm=none
 hi Search           ctermfg=none  ctermbg=224  cterm=none
-hi ExtraWhitespace  ctermfg=198   ctermbg=none cterm=reverse
+" hi ExtraWhitespace  ctermfg=198   ctermbg=none cterm=reverse
 hi Todo             ctermfg=198   ctermbg=none cterm=none
 hi DiffAdd          ctermfg=none  ctermbg=158 cterm=none
 hi DiffDelete       ctermfg=none  ctermbg=224 cterm=none
 hi DiffChange       ctermfg=none  ctermbg=195 cterm=none
 hi DiffText         ctermfg=none  ctermbg=230 cterm=none
 hi Folded           ctermfg=none  ctermbg=229  cterm=none
+hi SpecialKey       ctermfg=252   ctermbg=none cterm=none

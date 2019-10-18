@@ -1,3 +1,6 @@
+scriptencoding utf-8
+set encoding=utf-8
+
 " source the minimal vim config file.
 source ~/.vimrc.minimal
 
@@ -17,12 +20,14 @@ set complete-=i  " Custom auto complete behavior.
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 set cursorline colorcolumn=76
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+set list listchars=tab:\│\ ,trail:·
+set list
 
 " tab/indenting stuff
 filetype plugin indent on
-set expandtab tabstop=2 shiftwidth=2 softtabstop=2 indentkeys=<Tab>
+set tabstop=2 shiftwidth=2 softtabstop=2 indentkeys=<Tab>
 set autoindent smartindent cindent
 
 command! SaveSession execute "mksession! /tmp/vimbook.vim"
@@ -100,3 +105,4 @@ nmap ;fo :FuzzyOpen<CR>
 nmap ;jsi gg?^import <CR>:noh<CR>zt
 nmap ;jctor gg/<C-R>=expand("%:t:r")<CR>(<CR>
 nnoremap <Space> :
+

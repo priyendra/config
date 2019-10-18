@@ -47,10 +47,12 @@ $ brew install fzf
 $ /usr/local/opt/fzf/install
 ```
 
-### Tmux
+### Miscellaneous 
 
 ```
 $ brew install tmux
+$ brew install coreutils
+$ brew install clang-format
 ```
 
 ### Other steps
