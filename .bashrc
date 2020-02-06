@@ -24,7 +24,7 @@ function prompt_fn {
 shopt -s histappend
 
 EDITOR='vim'
-PATH="~/bin:$PATH"
+PATH="~/bin:/usr/local/bin:$PATH:."
 HISTSIZE=100000000
 HISTFILESIZE=1000000000
 HISTCONTROL=ignoredups:erasedups
@@ -43,31 +43,11 @@ fi
 alias grep='egrep --color=auto'
 alias dmux='tmux attach || tmux new -s default'
 
-# Compass stuff
-export GITROOT=$HOME/development
-export PATH="/usr/local/bin:${PATH}"
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-export CREDENTIALS_FILE=~/credentials
-export GITROOT=$HOME/development
-
 # devdocker shortcuts
-function dshell {
-  DIRECTORY=$(realpath .)
-  while [ $DIRECTORY != "/" ]; do
-    if [ -f $DIRECTORY/.devdockercfg ]; then
-      pushd $DIRECTORY > /dev/null
-      devdocker shell
-      popd > /dev/null
-    fi
-    DIRECTORY=$(dirname $DIRECTORY)
-  done
-}
-alias dexec='devdocker exec'
-function bzl() {
-  devdocker exec -i bazel $@ 2>&1 | tee /tmp/mybazel.out
-}
+alias dx='devdocker exec'
+alias dxi='devdocker exec -i'
+alias dsh='devdocker shell'
+alias dport='devdocker portfwd'
 
 # Vi editing mode
 if [[ $- == *i* ]]; then
@@ -87,5 +67,4 @@ function gitcd() {
   done
 }
 
-VIMRUNTIME=`vim -e -T dumb --cmd 'exe "set t_cm=\<C-M>"|echo $VIMRUNTIME|quit' | tr -d '\015' `
-alias vless='$VIMRUNTIME/macros/less.sh'
+tabs -2
