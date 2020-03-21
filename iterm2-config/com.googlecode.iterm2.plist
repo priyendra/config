@@ -636,9 +636,9 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>530 476 620 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 3440 1417 0 0 3440 1417 </string>
+	<string>1148 0 2292 1417 0 0 3440 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>203 546 570 403 0 0 3440 1417 </string>
+	<string>0 1014 570 403 0 0 3440 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>0 0 3440 1417 0 0 3440 1417 </string>
 	<key>New Bookmarks</key>
@@ -963,7 +963,7 @@
 			<key>Disable Window Resizing</key>
 			<true/>
 			<key>Flashing Bell</key>
-			<true/>
+			<false/>
 			<key>Foreground Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -1536,14 +1536,14 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {3440, 1440}}</string>
 		<key>topLeft</key>
-		<string>{1621, 913}</string>
+		<string>{674, 1055}</string>
 	</dict>
 	<key>NoSyncHaveUsedCopyMode</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>FB98D405-8030-47B8-954B-33899A0AA207</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>70</integer>
+	<integer>71</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
