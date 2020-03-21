@@ -133,7 +133,7 @@ endfunction
 command! GoFmt call GoFmtFn()
 
 " Always default to bash mode for filetype=sh syntax highlighting.
-let b:is_bash=1
+let g:is_bash=1
 
 " Add an errorformat that works well with JUnit
 set errorformat+=%m{{{%f:%l}}}
