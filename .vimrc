@@ -83,7 +83,9 @@ function! ArgsOrWordUnderCursor(args)
   endif
   return a:args
 endfunction
-command! BzlTest cgetexpr system("bash scripts/vimbazel.sh query 'same_pkg_direct_rdeps(".expand('%', 1).")' \| xargs bash scripts/vimbazel.sh test --test_output=errors") | echo "done"
+command! BzlTest AsyncRun tools/vimbazel.sh testfile %
+" command! BzlTest cgetexpr system("bash tools/vimbazel.sh query 'same_pkg_direct_rdeps(".expand('%', 1).")' \| xargs bash tools/vimbazel.sh test --test_output=errors") | echo "done" | execute "normal \<Esc>"
+
 command! -nargs=* -complete=file JavaFind cgetexpr system("git grep -E -n '((class)\|(interface)\|(enum)) '".ArgsOrWordUnderCursor(<q-args>))
 command! -nargs=* -complete=file GitGrep cgetexpr system("git grep -E -n ".ArgsOrWordUnderCursor(<q-args>))
 command! GitDiff execute "! git difftool -d -- " . shellescape(expand('%', 1))
