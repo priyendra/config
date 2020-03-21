@@ -12,6 +12,7 @@ set showtabline=2  " show tabline at all times
 set nowrap " disable soft/visual line wrapping
 syntax enable  " enable syntax highlighting
 colorscheme whitebg  " pick the customized whitebg theme
+set background=light
 set nobackup nowritebackup noswapfile " disable backup and swap files
 set hidden " Allow hidden buffers
 set complete-=i  " Custom auto complete behavior.
@@ -94,10 +95,10 @@ command! FuzzyOpen call fzf#run(fzf#wrap({'source': 'find -L . -type d \( -name 
 let g:fzf_colors =
   \ { 'fg':    ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
+  \ 'fg+':     ['fg', 'TODO'],
+  \ 'bg+':     ['bg', 'CursorLine'],
   \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
+  \ 'hl+':     ['fg', 'Comment'],
   \ 'info':    ['fg', 'PreProc'],
   \ 'border':  ['fg', 'Ignore'],
   \ 'prompt':  ['fg', 'Conditional'],
@@ -136,3 +137,6 @@ let b:is_bash=1
 
 " Add an errorformat that works well with JUnit
 set errorformat+=%m{{{%f:%l}}}
+
+let g:asyncrun_open=20
+let g:asyncrun_bell=1

@@ -41,3 +41,4 @@ hi DiffChange       ctermfg=none  ctermbg=195 cterm=none
 hi DiffText         ctermfg=none  ctermbg=230 cterm=none
 hi Folded           ctermfg=none  ctermbg=229  cterm=none
 hi SpecialKey       ctermfg=252   ctermbg=none cterm=none
+hi NonText          ctermfg=251  ctermbg=none cterm=none

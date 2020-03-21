@@ -31,6 +31,7 @@ HISTCONTROL=ignoredups:erasedups
 HISTFILE=~/.bash_history_unlimited
 PROMPT_COMMAND="prompt_fn"
 
+alias vim='nvim'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
