@@ -1,0 +1,17 @@
+#! /bin/bash
+
+# Simple utility to start/stop the aws machine.
+
+cd /Users/deshwal/work/netspring
+IP=$(/Users/deshwal/work/netspring/tools/engvm list | \
+         grep $1 | awk '{print $2}')
+
+awk -v IP="$IP"                        \
+    '/engvm-ip/ {                      \
+       printf("  # engvm-ip\n");       \
+       printf("  Hostname %s\n", IP);  \
+       getline;                        \
+       getline;                        \
+    } 1' ~/.ssh/config > /tmp/ssh-config
+
+cp /tmp/ssh-config ~/.ssh/config

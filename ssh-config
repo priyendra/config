@@ -1,20 +1,9 @@
-Host vpc-bastion
-  Hostname bastion.compass.com
-Host *.internal.compass.com
-  ProxyCommand ssh -A -W %h:%p vpc-bastion
-Host *.managed.compass.com
-  ProxyCommand ssh -A -W %h:%p vpc-bastion
-Host gerrit
-  Hostname code.urbancompass.com
-  Port 29418
-  User deshwal
 Host github.com
   StrictHostKeyChecking no
-Host tezdb.aws
-  # tezdb-aws-ip
-  Hostname "52.205.230.227"
+Host engvm
+  # engvm-ip
+  Hostname 3.101.27.222
   User ubuntu
-  IdentityFile ~/.ssh/TezDB-Dev.pem
 Host gitlab.com
   User gitlab
   IdentityFile ~/.ssh/TezDB-Dev.pem
