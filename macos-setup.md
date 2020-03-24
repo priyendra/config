@@ -56,6 +56,19 @@ $ brew install clang-format
 $ brew install golang
 ```
 
+### Increase key repeat rate
+```
+defaults write -g InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+```
+
+### Setup NeoVim
+
+```
+$ brew install neovim
+$ python -m pip install --user --upgrade pynvim
+```
+
 Also, after opening a go file, one will need to execute :GoInstallBinaries
 to get various binaries that are needed for vim-go plugin to properly
 function.

@@ -112,6 +112,7 @@ nmap ;fo :FuzzyOpen<CR>
 nmap ;jsi gg?^import <CR>:noh<CR>zt
 nmap ;jctor gg/<C-R>=expand("%:t:r")<CR>(<CR>
 nnoremap <Space> :
+nnoremap q<Space> q:
 
 " By default, Vim's go mode shows an annoying error on tabs until some text
 " is added to the current line. We disable that behavior here.
@@ -140,3 +141,6 @@ set errorformat+=%m{{{%f:%l}}}
 
 let g:asyncrun_open=20
 let g:asyncrun_bell=1
+
+" Helpful alias for debugging syntax highlighting issues
+map ;syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'. synIDattr(synID(line("."),col("."),0),"name") . "> lo<". synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>

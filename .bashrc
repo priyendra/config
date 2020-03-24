@@ -6,10 +6,11 @@ function prompt_fn {
     exit_code_str=$(color256 245)"{"$exit_code"}"
   fi
   history -a
-  hostname=$(hostname -s)
-  username=$(whoami)
+  host=$(hostname -s)
+  user=$(whoami)
+	gitBranch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "=")
   termwidth=${COLUMNS}
-  local temp="[xx:xx:xx ${username}@${hostname}:${prompt_pwd}]"
+  local temp="[xx:xx:xx ${gitBranch} ${user}@${host}:${prompt_pwd}]"
   let fillsize=${termwidth}-${#temp}
   prompt_pwd="${PWD}"
   if [ "$fillsize" -lt "0" ]
@@ -18,7 +19,7 @@ function prompt_fn {
     let cut=5-${fillsize}
     prompt_pwd=" ... ${PWD:${cut}}"
   fi
-  PS1="$exit_code_str$(color256 198)[\t \u@\h \${prompt_pwd}]\[\033[0m\]"$'\n'
+	PS1="$exit_code_str$(color256 198)[\t $(color256 4){\${gitBranch}}$(color256 198) \u@\h \${prompt_pwd}]\[\033[0m\]"$'\n'
 }
 
 shopt -s histappend
