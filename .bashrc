@@ -10,7 +10,7 @@ function prompt_fn {
   user=$(whoami)
 	gitBranch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "=")
   termwidth=${COLUMNS}
-  local temp="[xx:xx:xx ${gitBranch} ${user}@${host}:${prompt_pwd}]"
+  local temp="${exit_code_str}[xx:xx:xx ${gitBranch} ${user}@${host}:${prompt_pwd}]"
   let fillsize=${termwidth}-${#temp}
   prompt_pwd="${PWD}"
   if [ "$fillsize" -lt "0" ]
@@ -46,10 +46,11 @@ alias grep='egrep --color=auto'
 alias dmux='tmux attach || tmux new -s default'
 
 # devdocker shortcuts
-alias dx='devdocker exec'
-alias dxi='devdocker exec -i'
+alias dx='devdocker exec --'
+alias dxi='devdocker exec -i --'
 alias dsh='devdocker shell'
 alias dport='devdocker portfwd'
+alias bazel='tools/safebazel'
 
 # Vi editing mode
 if [[ $- == *i* ]]; then
@@ -58,7 +59,7 @@ fi
 
 # Fuzzy file completion mode.
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_OPTS="--extended --layout=reverse --border"
+export FZF_DEFAULT_OPTS="--extended --layout=reverse"
 
 # Rewind up to git root directory.
 function gitcd() {

@@ -2,8 +2,5 @@ Host github.com
   StrictHostKeyChecking no
 Host engvm
   # engvm-ip
-  Hostname 3.101.27.222
+  Hostname 13.56.140.245
   User ubuntu
-Host gitlab.com
-  User gitlab
-  IdentityFile ~/.ssh/TezDB-Dev.pem

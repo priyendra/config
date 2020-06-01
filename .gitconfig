@@ -1,6 +1,7 @@
 [alias]
   unstage = reset HEAD --
   graph = log --graph --pretty=oneline --decorate --abbrev-commit
+  cherrypick = cherry-pick
 [diff]
     tool = default-difftool
 [difftool "default-difftool"]

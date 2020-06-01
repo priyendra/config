@@ -1,8 +1,13 @@
 scriptencoding utf-8
 set encoding=utf-8
 
-" source the minimal vim config file.
-source ~/.vimrc.minimal
+set equalalways " make sure that windows always remain equal in size.
+set background=light " set a light background by default.
+set incsearch hlsearch ignorecase smartcase " search related
+
+" Key mappings
+noremap , <C-w>W
+noremap . <C-w>w
 
 set t_Co=256  " 256 color terminal
 set wildmenu wildmode=longest,list,full  " better tab completion of file name
@@ -74,7 +79,7 @@ augroup END
 " Always open the quickfix window at the bottom of the screen and increase
 " its default height.
 :autocmd FileType qf wincmd J
-:autocmd FileType qf resize 20
+:autocmd FileType qf resize 15
 
 let macvim_skip_colorscheme=1
 
@@ -84,8 +89,8 @@ function! ArgsOrWordUnderCursor(args)
   endif
   return a:args
 endfunction
-command! BzlTest AsyncRun tools/vimbazel.sh testfile %
-" command! BzlTest cgetexpr system("bash tools/vimbazel.sh query 'same_pkg_direct_rdeps(".expand('%', 1).")' \| xargs bash tools/vimbazel.sh test --test_output=errors") | echo "done" | execute "normal \<Esc>"
+command! BzlBuild AsyncRun tools/vimbazel buildfile %
+command! BzlTest AsyncRun tools/vimbazel testfile %
 
 command! -nargs=* -complete=file JavaFind cgetexpr system("git grep -E -n '((class)\|(interface)\|(enum)) '".ArgsOrWordUnderCursor(<q-args>))
 command! -nargs=* -complete=file GitGrep cgetexpr system("git grep -E -n ".ArgsOrWordUnderCursor(<q-args>))
@@ -107,10 +112,13 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 nmap ;bt :BzlTest<CR>
+nmap ;bb :BzlBuild<CR>
 nmap ;fo :FuzzyOpen<CR>
 " jsi = java skip imports i.e. positions cursor at the last import declaration
 nmap ;jsi gg?^import <CR>:noh<CR>zt
 nmap ;jctor gg/<C-R>=expand("%:t:r")<CR>(<CR>
+nmap ;qfl :copen<CR>35<C-w>_
+nmap ;gray :highlight Normal ctermbg=254<CR>
 nnoremap <Space> :
 nnoremap q<Space> q:
 
@@ -144,3 +152,9 @@ let g:asyncrun_bell=1
 
 " Helpful alias for debugging syntax highlighting issues
 map ;syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'. synIDattr(synID(line("."),col("."),0),"name") . "> lo<". synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+let g:netrw_banner=0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split=4
+let g:netrw_winsize=40
+let g:netrw_altv=1

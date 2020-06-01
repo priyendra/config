@@ -1,7 +1,0 @@
-set equalalways " make sure that windows always remain equal in size.
-set background=light " set a light background by default.
-set incsearch hlsearch ignorecase smartcase " search related
-
-" Key mappings
-noremap , <C-w>W
-noremap . <C-w>w
