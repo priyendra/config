@@ -636,11 +636,15 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>530 476 620 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1148 0 2292 1417 0 0 3440 1417 </string>
+	<string>0 624 570 402 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 1014 570 403 0 0 3440 1417 </string>
+	<string>0 0 1680 1027 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>0 0 3440 1417 0 0 3440 1417 </string>
+	<string>0 1014 570 403 0 0 3440 1417 </string>
+	<key>NSWindow Frame iTerm Window 3</key>
+	<string>516 135 570 403 0 0 3440 1417 </string>
+	<key>NSWindow Frame iTerm Window 4</key>
+	<string>537 112 570 403 0 0 3440 1417 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -731,13 +735,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.67738556861877441</real>
+				<real>0.814605712890625</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.50032889842987061</real>
+				<real>0.7851679884362962</real>
 				<key>Red Component</key>
-				<real>0.35620790719985962</real>
+				<real>0.22585122380405664</real>
 			</dict>
 			<key>Ansi 15 Color</key>
 			<dict>
@@ -809,13 +813,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.4788782000541687</real>
+				<real>0.64715576171875</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.30288740992546082</real>
+				<real>0.62521562389156315</real>
 				<key>Red Component</key>
-				<real>0.12140107154846191</real>
+				<real>0.1790994880720973</real>
 			</dict>
 			<key>Ansi 7 Color</key>
 			<dict>
@@ -1494,7 +1498,7 @@
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
-			<true/>
+			<false/>
 			<key>Use Cursor Guide</key>
 			<false/>
 			<key>Use Italic Font</key>
@@ -1536,14 +1540,14 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {3440, 1440}}</string>
 		<key>topLeft</key>
-		<string>{674, 1055}</string>
+		<string>{595, 918}</string>
 	</dict>
 	<key>NoSyncHaveUsedCopyMode</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>FB98D405-8030-47B8-954B-33899A0AA207</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>71</integer>
+	<integer>77</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2312,7 +2316,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-03-20T23:59:29Z</date>
+	<date>2020-03-26T01:37:40Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
