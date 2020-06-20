@@ -46,6 +46,7 @@ alias grep='egrep --color=auto'
 alias dmux='tmux attach || tmux new -s default'
 
 # devdocker shortcuts
+alias devdocker='tools/devdocker'
 alias dx='devdocker exec --'
 alias dxi='devdocker exec -i --'
 alias dsh='devdocker shell'
