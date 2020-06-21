@@ -18,5 +18,6 @@
   email = priyendra@gmail.com
 [core]
   preloadindex = true
+  editor = vim
 [push]
-	default = nothing
+  default = nothing
