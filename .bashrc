@@ -8,7 +8,7 @@ function prompt_fn {
   history -a
   host=$(hostname -s)
   user=$(whoami)
-	gitBranch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "=")
+  gitBranch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "=")
   termwidth=${COLUMNS}
   local temp="${exit_code_str}[xx:xx:xx ${gitBranch} ${user}@${host}:${prompt_pwd}]"
   let fillsize=${termwidth}-${#temp}
@@ -19,11 +19,21 @@ function prompt_fn {
     let cut=5-${fillsize}
     prompt_pwd=" ... ${PWD:${cut}}"
   fi
-	PS1="$exit_code_str$(color256 198)[\t $(color256 4){\${gitBranch}}$(color256 198) \u@\h \${prompt_pwd}]\[\033[0m\]"$'\n'
+  promptColor=34
+  if [[ $(uname -a) == Darwin* ]]; then
+    promptColor=198
+  fi
+  PS1="$exit_code_str$(color256 $promptColor)[\t $(color256 4){\${gitBranch}}$(color256 $promptColor) \u@\h \${prompt_pwd}]\[\033[0m\]"$'\n'
 }
+
+# .bashrc is sourced in SCP sessions and the SCP protocol can at times
+# break because of the code here. The following line ensures that .bashrc
+# is not sourced in non-interactive shells (e.g. SCP).
+[ -z "$PS1" ] && return
 
 shopt -s histappend
 
+TERM='xterm'
 EDITOR='vim'
 PATH="~/bin:/usr/local/bin:$PATH:."
 HISTSIZE=100000000
