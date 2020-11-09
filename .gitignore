@@ -1,3 +1,4 @@
 *.pyc
 .vim/.netrwhist
 unrealtournament
+.config/karabiner/automatic_backups/*

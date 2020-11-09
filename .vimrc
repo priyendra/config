@@ -1,8 +1,11 @@
 scriptencoding utf-8
 set encoding=utf-8
 
+colorscheme whitebg  " pick the customized whitebg theme
+" colorscheme darkbg  " pick the customized whitebg theme
+set background=light " ironically, light works better in dark mode also!
+
 set equalalways " make sure that windows always remain equal in size.
-set background=light " set a light background by default.
 set incsearch hlsearch ignorecase smartcase " search related
 
 " Key mappings
@@ -16,8 +19,6 @@ set ruler  " show line/column numbers
 set showtabline=2  " show tabline at all times
 set nowrap " disable soft/visual line wrapping
 syntax enable  " enable syntax highlighting
-colorscheme whitebg  " pick the customized whitebg theme
-set background=light
 set nobackup nowritebackup noswapfile " disable backup and swap files
 set hidden " Allow hidden buffers
 set complete-=i  " Custom auto complete behavior.
@@ -26,8 +27,6 @@ set complete-=i  " Custom auto complete behavior.
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 set cursorline colorcolumn=76
-" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 set list listchars=tab:\│\ ,trail:·
 set list
 
@@ -42,8 +41,10 @@ command! NoAutoIndent execute "setl noai nocin nosi inde="
 " Key mappings
 nmap * g*
 map <Tab> ^i<Tab><Esc>^
-noremap < :bprevious<CR>
-noremap > :bnext<CR>
+" noremap < :bprevious<CR>
+" noremap > :bnext<CR>
+noremap < :wincmd R<CR>
+noremap > :wincmd r<CR>
 nmap :E :e <C-R>=expand("%")<CR>
 nmap :D :e <C-R>=fnamemodify(expand("%"), ":p:h")."/"<CR>
 
