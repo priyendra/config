@@ -1,0 +1,28 @@
+#! /bin/bash
+
+# Allows easy integration of mac clipboard (pbcopy / pbpaste) over ssh.
+# SSH sessions must be invoked with the following reverse tunnel
+# configurations.
+#   .) ssh engvm -R 2224:localhost:2224
+#   .) Or the following ~/.ssh/config entry under the appropriate host:
+#         RemoteForward 2224 localhost:2224
+# Moreover, the pbcopy server must be already running on mac:
+#   $ rpbcopy -server
+
+port=2224
+
+function runDaemon() {
+	while true; do
+		nc -l $port | pbcopy
+		echo "------------------- New Clipboard Entry ------------------------"
+		pbpaste
+		echo "----------------------------------------------------------------"
+	done
+}
+
+if [[ $# -ge 1 && $1 == "-server" ]]; then
+	runDaemon
+	exit
+else
+	nc -q0 localhost $port
+fi

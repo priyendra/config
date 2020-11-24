@@ -1,6 +1,6 @@
 Host github.com
   StrictHostKeyChecking no
 Host engvm
-  # engvm-ip
-  Hostname 13.56.140.245
+  Hostname engvm-deshwal.netspring.team
   User ubuntu
+  RemoteForward 2224 localhost:2224
