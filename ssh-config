@@ -3,4 +3,3 @@ Host github.com
 Host engvm
   Hostname engvm-deshwal.netspring.team
   User ubuntu
-  RemoteForward 2224 localhost:2224
