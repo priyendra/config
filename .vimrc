@@ -1,8 +1,7 @@
 scriptencoding utf-8
 set encoding=utf-8
 
-colorscheme whitebg  " pick the customized whitebg theme
-" colorscheme darkbg  " pick the customized whitebg theme
+colorscheme deshwal16 " pick the customized deshwal16 theme
 set background=light " ironically, light works better in dark mode also!
 
 set equalalways " make sure that windows always remain equal in size.
@@ -159,3 +158,6 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split=4
 let g:netrw_winsize=40
 let g:netrw_altv=1
+
+" Change the cursor mode to be horizontal bar in normal mode.
+set guicursor=n-v-c-sm:hor20,i-ci-ve:ver25,r-cr-o:block

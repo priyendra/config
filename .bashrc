@@ -3,7 +3,7 @@ function prompt_fn {
   local exit_code=$?
   local exit_code_str=""
   if [ $exit_code -ne 0 ]; then
-    exit_code_str=$(color256 245)"{"$exit_code"}"
+    exit_code_str=$(color256 8)"{"$exit_code"}"
   fi
   history -a
   user=$(whoami)
@@ -17,9 +17,9 @@ function prompt_fn {
     let cut=$((5 + ${#prompt_pwd} - ${maxPwd}))
     prompt_pwd=" ... ${PWD:${cut}}"
   fi
-  promptColor=34
+  promptColor=2
   if [[ $(uname -a) == Darwin* ]]; then
-    promptColor=198
+    promptColor=1
   fi
   PS1="$exit_code_str$(color256 $promptColor)[\t $(color256 4){\${gitBranch}}$(color256 $promptColor) \u \${prompt_pwd}]\[\033[0m\]"$'\n'
 }
@@ -72,7 +72,7 @@ fi
 
 # Fuzzy file completion mode.
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_OPTS="--extended --layout=reverse"
+export FZF_DEFAULT_OPTS='--extended --layout=reverse --color=fg:8,bg:15,fg+:0,bg+:7,hl:1,hl+:1,gutter:7,pointer:7'
 
 # Rewind up to git root directory.
 function gitcd() {
