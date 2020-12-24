@@ -19,7 +19,7 @@ set t_Co=16
 " 7 - LightGray  15 - White
 hi SpecialKey    ctermfg=7     ctermbg=none  cterm=none
 hi TermCursor    ctermfg=none  ctermbg=none  cterm=none
-hi NonText       ctermfg=7     ctermbg=none  cterm=none
+hi NonText       ctermfg=12    ctermbg=none  cterm=none
 hi Directory     ctermfg=4     ctermbg=none  cterm=none
 hi ErrorMsg      ctermfg=1     ctermbg=none  cterm=none
 hi Error         ctermfg=1     ctermbg=none  cterm=none
@@ -29,7 +29,7 @@ hi SpellRare     ctermfg=1     ctermbg=none  cterm=none
 hi SpellLocal    ctermfg=1     ctermbg=none  cterm=none
 hi SpellCap      ctermfg=1     ctermbg=none  cterm=none
 hi IncSearch     ctermfg=none  ctermbg=none  cterm=reverse
-hi Search        ctermfg=0     ctermbg=9     cterm=none
+hi Search        ctermfg=0     ctermbg=13    cterm=none
 hi ModeMsg       ctermfg=none  ctermbg=none  cterm=none
 hi CursorLineNr  ctermfg=0     ctermbg=none  cterm=none
 hi Title         ctermfg=5     ctermbg=none  cterm=none
@@ -42,7 +42,7 @@ hi Pmenu         ctermfg=none  ctermbg=7     cterm=none
 hi PmenuSel      ctermfg=0     ctermbg=11    cterm=none
 hi TabLine       ctermfg=0     ctermbg=15    cterm=none
 hi TabLineSel    ctermfg=15    ctermbg=8     cterm=none
-hi TabLineFill   ctermfg=none  ctermbg=7     cterm=none
+hi TabLineFill   ctermfg=none  ctermbg=7     cterm=underline
 hi CursorColumn  ctermfg=none  ctermbg=7     cterm=none
 hi CursorLine    ctermfg=none  ctermbg=7     cterm=none
 hi MatchParen    ctermfg=5     ctermbg=13    cterm=none
@@ -57,16 +57,16 @@ hi Todo          ctermfg=1     ctermbg=7     cterm=none
 hi DiffAdd       ctermfg=none  ctermbg=10    cterm=none
 hi DiffChange    ctermfg=none  ctermbg=14    cterm=none
 hi DiffDelete    ctermfg=9     ctermbg=9     cterm=none
-hi DiffText      ctermfg=none  ctermbg=7    cterm=none
+hi DiffText      ctermfg=none  ctermbg=7     cterm=none
 hi Visual        ctermfg=none  ctermbg=11    cterm=none
 hi LineNr        ctermfg=8     ctermbg=none  cterm=none
 hi Comment       ctermfg=4     ctermbg=none  cterm=none
 hi ColorColumn   ctermfg=none  ctermbg=9     cterm=none
 hi Folded        ctermfg=none  ctermbg=11    cterm=none
 hi FoldColumn    ctermfg=4     ctermbg=7     cterm=none
-hi StatusLine    ctermfg=15    ctermbg=8     cterm=none
-hi StatusLineNC  ctermfg=0     ctermbg=7     cterm=none
-hi VertSplit     ctermfg=7     ctermbg=7     cterm=none
+hi StatusLine    ctermfg=15    ctermbg=8     cterm=underline
+hi StatusLineNC  ctermfg=0     ctermbg=7     cterm=underline
+hi VertSplit     ctermfg=8     ctermbg=7     cterm=none
 hi SignColumn    ctermfg=none  ctermbg=7     cterm=none
 hi MoreMsg       ctermfg=none  ctermbg=none  cterm=none
 hi Question      ctermfg=none  ctermbg=none  cterm=none

@@ -55,12 +55,6 @@ let html_no_rendering=1
 autocmd BufReadPre,BufNewFile *.proto set filetype=proto
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
-" Clang format for supported file types.
-autocmd FileType go nmap <buffer> <C-K> :GoFmt<CR>
-autocmd FileType cpp map <buffer> <C-K> :pyf ~/.vim/plugin/clang-format.py<CR>
-autocmd FileType proto map <buffer> <C-K> :pyf ~/.vim/plugin/clang-format.py<CR>
-autocmd FileType java map <buffer> <C-K> :pyf ~/.vim/plugin/clang-format.py<CR>
-
 " Experimental settings
 set wrap
 set showbreak=▸▸
@@ -140,6 +134,18 @@ function! GoFmtFn()
   endif
 endfunction
 command! GoFmt call GoFmtFn()
+autocmd FileType go nmap <buffer> <C-K> :GoFmt<CR>
+
+" Clang format for supported file types.
+function! ClangFmtFn()
+  silent write
+	let l:lines="all"
+	py3f ~/.vim/plugin/clang-format.py
+endfunction
+command! ClangFmt call ClangFmtFn()
+autocmd FileType cpp nmap <buffer> <C-K> :ClangFmt<CR>
+autocmd FileType proto nmap <buffer> <C-K> :ClangFmt<CR>
+autocmd FileType java nmap <buffer> <C-K> :ClangFmt<CR>
 
 " Always default to bash mode for filetype=sh syntax highlighting.
 let g:is_bash=1
