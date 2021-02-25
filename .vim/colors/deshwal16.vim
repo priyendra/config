@@ -19,7 +19,7 @@ set t_Co=16
 " 7 - LightGray  15 - White
 hi SpecialKey    ctermfg=7     ctermbg=none  cterm=none
 hi TermCursor    ctermfg=none  ctermbg=none  cterm=none
-hi NonText       ctermfg=12    ctermbg=none  cterm=none
+hi NonText       ctermfg=13     ctermbg=none  cterm=none
 hi Directory     ctermfg=4     ctermbg=none  cterm=none
 hi ErrorMsg      ctermfg=1     ctermbg=none  cterm=none
 hi Error         ctermfg=1     ctermbg=none  cterm=none
@@ -37,12 +37,12 @@ hi WildMenu      ctermfg=0     ctermbg=11    cterm=none
 hi Conceal       ctermfg=15    ctermbg=15    cterm=none
 hi Ignore        ctermfg=15    ctermbg=15    cterm=none
 hi PmenuSbar     ctermfg=7     ctermbg=7     cterm=none
-hi PmenuThumb    ctermfg=8     ctermbg=8     cterm=none
+hi PmenuThumb    ctermfg=0     ctermbg=0     cterm=none
 hi Pmenu         ctermfg=none  ctermbg=7     cterm=none
 hi PmenuSel      ctermfg=0     ctermbg=11    cterm=none
 hi TabLine       ctermfg=0     ctermbg=15    cterm=none
-hi TabLineSel    ctermfg=15    ctermbg=8     cterm=none
-hi TabLineFill   ctermfg=none  ctermbg=7     cterm=underline
+hi TabLineSel    ctermfg=15    ctermbg=0     cterm=none
+hi TabLineFill   ctermfg=8     ctermbg=7     cterm=underline
 hi CursorColumn  ctermfg=none  ctermbg=7     cterm=none
 hi CursorLine    ctermfg=none  ctermbg=7     cterm=none
 hi MatchParen    ctermfg=5     ctermbg=13    cterm=none
@@ -59,12 +59,12 @@ hi DiffChange    ctermfg=none  ctermbg=14    cterm=none
 hi DiffDelete    ctermfg=9     ctermbg=9     cterm=none
 hi DiffText      ctermfg=none  ctermbg=7     cterm=none
 hi Visual        ctermfg=none  ctermbg=11    cterm=none
-hi LineNr        ctermfg=8     ctermbg=none  cterm=none
+hi LineNr        ctermfg=0     ctermbg=none  cterm=none
 hi Comment       ctermfg=4     ctermbg=none  cterm=none
 hi ColorColumn   ctermfg=none  ctermbg=9     cterm=none
 hi Folded        ctermfg=none  ctermbg=11    cterm=none
 hi FoldColumn    ctermfg=4     ctermbg=7     cterm=none
-hi StatusLine    ctermfg=15    ctermbg=8     cterm=underline
+hi StatusLine    ctermfg=15    ctermbg=0     cterm=underline
 hi StatusLineNC  ctermfg=0     ctermbg=7     cterm=underline
 hi VertSplit     ctermfg=8     ctermbg=7     cterm=none
 hi SignColumn    ctermfg=none  ctermbg=7     cterm=none

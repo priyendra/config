@@ -92,19 +92,19 @@ command! GitDiff execute "! git difftool -d -- " . shellescape(expand('%', 1))
 
 command! FuzzyOpen call fzf#run(fzf#wrap({'source': 'find -L . -type d \( -name "bazel-*" -o -name .git \) -prune -o -print'}))
 let g:fzf_colors =
-  \ { 'fg':    ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'fg+':     ['fg', 'TODO'],
-  \ 'bg+':     ['bg', 'CursorLine'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'hl+':     ['fg', 'Comment'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+  \ { 'fg':      ['ctermfg', 'Normal'],
+  \   'bg':      ['ctermbg', 'Normal'],
+  \   'fg+':     ['ctermfg', 'TODO'],
+  \   'bg+':     ['ctermbg', 'Normal'],
+  \   'hl':      ['ctermfg', 'Comment'],
+  \   'hl+':     ['ctermfg', 'Comment'],
+  \   'info':    ['ctermfg', 'PreProc'],
+  \   'border':  ['ctermfg', 'Ignore'],
+  \   'prompt':  ['ctermfg', 'Conditional'],
+  \   'pointer': ['ctermfg', 'Exception'],
+  \   'marker':  ['ctermfg', 'Keyword'],
+  \   'spinner': ['ctermfg', 'Label'],
+  \   'header':  ['ctermfg', 'Comment'] }
 nmap ;bt :BzlTest<CR>
 nmap ;bb :BzlBuild<CR>
 nmap ;fo :FuzzyOpen<CR>

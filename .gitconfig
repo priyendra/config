@@ -20,4 +20,6 @@
   preloadindex = true
   editor = vim
 [push]
-  default = nothing
+	default = nothing
+[merge]
+	conflictstyle = diff3
