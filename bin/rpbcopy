@@ -12,15 +12,20 @@
 port=2224
 
 function runDaemon() {
+	echo "Running rpbcopy daemon"
+	i=0
 	while true; do
 		nc -l $port | pbcopy
-		echo "------------------- New Clipboard Entry ------------------------"
-		pbpaste
-		echo "----------------------------------------------------------------"
+		i=$((i+1))
+		echo "New clipboard entry[$i]"
 	done
 }
 
 if [[ $# -ge 1 && $1 == "-server" ]]; then
+	ssh -N -R $port:localhost:$port $2 &
+	sshPid=$!
+	echo "Started ssh session [pid=$sshPid] with tunnel on port $port"
+	trap "kill -9 $sshPid" EXIT
 	runDaemon
 	exit
 else

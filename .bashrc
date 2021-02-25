@@ -63,7 +63,6 @@ alias dx='devdocker exec --'
 alias dxi='devdocker exec -i --'
 alias dsh='devdocker shell'
 alias dport='devdocker portfwd'
-alias bazel='tools/safebazel'
 
 # Vi editing mode
 if [[ $- == *i* ]]; then
