@@ -90,7 +90,7 @@ command! -nargs=* -complete=file JavaFind cgetexpr system("git grep -E -n '((cla
 command! -nargs=* -complete=file GitGrep cgetexpr system("git grep -E -n ".ArgsOrWordUnderCursor(<q-args>))
 command! GitDiff execute "! git difftool -d -- " . shellescape(expand('%', 1))
 
-command! FuzzyOpen call fzf#run(fzf#wrap({'source': 'find -L . -type d \( -name "bazel-*" -o -name .git \) -prune -o -print'}))
+command! FuzzyOpen call fzf#run(fzf#wrap({'source': 'find -L . -type d \( -name "bazel-*" -o -name .git -o -name "*node_modules*" -o -name "*.terraform*" \) -prune -o -print'}))
 let g:fzf_colors =
   \ { 'fg':      ['ctermfg', 'Normal'],
   \   'bg':      ['ctermbg', 'Normal'],

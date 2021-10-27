@@ -72,6 +72,12 @@ fi
 # Fuzzy file completion mode.
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_OPTS='--extended --layout=reverse --color=fg:0,bg:15,fg+:0,bg+:7,hl:1,hl+:1,gutter:7,pointer:7'
+function _fzf_compgen_path() {
+  find -L . -type d \( -name "bazel-*" -o -name ".git" -o -name "*node_modules*" \) -prune -o -print
+}
+export FZF_DEFAULT_COMMAND="_fzf_compgen_path"
+export FZF_CTRL_T_COMMAND="_fzf_compgen_path"
+
 
 # Rewind up to git root directory.
 function gitcd() {
