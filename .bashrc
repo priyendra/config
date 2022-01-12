@@ -110,3 +110,4 @@ function pstmux() {
   ps "$@" | grep --color=never $tty
 }
 
+export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
