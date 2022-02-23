@@ -20,7 +20,11 @@ set diffopt=filler,context:100000  " disable folding in diff windows
 set nocursorline
 autocmd WinEnter * setlocal nocursorline
 EOF
-vim -R -f -c "source $FILENAME" \
-          -c "DirDiff $1 $2"    \
-          -c "wincmd t"
+VIM=vim
+if which nvim; then
+  VIM=nvim
+fi
+$VIM -R -f -c "source $FILENAME" \
+           -c "DirDiff $1 $2"    \
+           -c "wincmd t"
 rm -f $FILENAME

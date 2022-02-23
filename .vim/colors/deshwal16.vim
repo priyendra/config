@@ -59,7 +59,9 @@ hi DiffChange          ctermfg=none  ctermbg=14    cterm=none
 hi DiffDelete          ctermfg=9     ctermbg=9     cterm=none
 hi DiffText            ctermfg=none  ctermbg=7     cterm=none
 hi Visual              ctermfg=none  ctermbg=11    cterm=none
-hi LineNr              ctermfg=0     ctermbg=none  cterm=none
+hi LineNr              ctermfg=0     ctermbg=13    cterm=none
+hi LineNrAbove         ctermfg=0     ctermbg=none  cterm=none
+hi LineNrBelow         ctermfg=0     ctermbg=7     cterm=none
 hi Comment             ctermfg=4     ctermbg=none  cterm=none
 hi javaCommentTitle    ctermfg=4     ctermbg=none  cterm=none
 hi ColorColumn         ctermfg=none  ctermbg=9     cterm=none

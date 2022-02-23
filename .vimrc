@@ -23,9 +23,9 @@ set hidden " Allow hidden buffers
 set complete-=i  " Custom auto complete behavior.
 
 " highlight the current line, the 81st column and trailing white space.
-autocmd WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
-set cursorline colorcolumn=76
+" autocmd WinEnter * setlocal cursorline
+" autocmd WinLeave * setlocal nocursorline
+set colorcolumn=76
 set list listchars=tab:\│\ ,trail:·
 set list
 
@@ -167,3 +167,5 @@ let g:netrw_altv=1
 
 " Change the cursor mode to be horizontal bar in normal mode.
 set guicursor=n-v-c-sm:hor20,i-ci-ve:ver25,r-cr-o:block
+
+au BufReadPost,BufNewFile *.tsmod,*.tsonnet,*.jsonnet setlocal expandtab

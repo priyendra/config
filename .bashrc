@@ -73,7 +73,7 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_OPTS='--extended --layout=reverse --color=fg:0,bg:15,fg+:0,bg+:7,hl:1,hl+:1,gutter:7,pointer:7'
 function _fzf_compgen_path() {
-  find -L . -type d \( -name "bazel-*" -o -name ".git" -o -name "*node_modules*" \) -prune -o -print
+  find -L . -type d \( -name "bazel-*" -o -name ".git" -o -name "*node_modules*" \) -prune -o -print | sed -e s@^./@@g
 }
 export FZF_DEFAULT_COMMAND="_fzf_compgen_path"
 export FZF_CTRL_T_COMMAND="_fzf_compgen_path"
@@ -90,16 +90,16 @@ function gitcd() {
 
 tabs -2
 
-_dxcomplete() {
-  local word=${COMP_WORDS[COMP_CWORD]}
-  local IFS=$'\n'
-  local gitRoot=$(git rev-parse --show-toplevel)
-  completions=($(devdocker exec $gitRoot/tools/dxcomplete $word || true))
-  for ((i=0; i < "${#completions[@]}"; i++)) {
-    COMPREPLY[$i]=$(printf '%q' "${completions[$i]}")
-  }
-}
-complete -o nospace -F _dxcomplete dxi dx
+# _dxcomplete() {
+#   local word=${COMP_WORDS[COMP_CWORD]}
+#   local IFS=$'\n'
+#   local gitRoot=$(git rev-parse --show-toplevel)
+#   completions=($(devdocker exec $gitRoot/tools/dxcomplete $word || true))
+#   for ((i=0; i < "${#completions[@]}"; i++)) {
+#     COMPREPLY[$i]=$(printf '%q' "${completions[$i]}")
+#   }
+# }
+# complete -o nospace -F _dxcomplete dxi dx
 
 # Enable ** in bash
 shopt -s globstar
