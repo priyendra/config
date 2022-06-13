@@ -123,7 +123,7 @@ let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
 function! GoFmtFn()
   silent write
-  execute system("tools/devdocker exec -- gofmt -e ".expand("%")." > /tmp/gofmt.out 2>/tmp/gofmt.err")
+  execute system("gofmt -e ".expand("%")." > /tmp/gofmt.out 2>/tmp/gofmt.err")
   if v:shell_error
     cgetexpr system("cat /tmp/gofmt.err")
   else

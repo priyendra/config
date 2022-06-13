@@ -3,7 +3,7 @@ function prompt_fn {
   local exit_code=$?
   local exit_code_str=""
   if [ $exit_code -ne 0 ]; then
-    exit_code_str=$(color256 8)"{"$exit_code"}"
+    exit_code_str=$(color256 1)"⨂ ["$exit_code"]"
   fi
   history -a
   user=$(whoami)
@@ -53,7 +53,7 @@ else
   alias ls='ls --color'
 fi
 alias grep='egrep --color=auto'
-alias dmux='tmux attach || tmux new -s default'
+alias dmux='tmux -u attach || tmux -u new -s default'
 
 # devdocker shortcuts
 function devdocker () {
