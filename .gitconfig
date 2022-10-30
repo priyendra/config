@@ -1,6 +1,6 @@
 [alias]
-  unstage = reset HEAD --
-  graph = log --graph --pretty=oneline --decorate --abbrev-commit
+	unstage = reset HEAD --
+	graph = log --graph --pretty='%C(yellow)%h %Cblue%aN%C(auto)%d %Creset%s       ... %C(cyan)%cd' --date=relative --decorate --abbrev-commit
   cherrypick = cherry-pick
 [diff]
     tool = default-difftool

@@ -35,7 +35,7 @@ if [[ $(uname -a) == Linux* ]]; then
   TERM='xterm-256color'
 fi
 EDITOR='vim'
-PATH="~/bin:/usr/local/bin:$PATH:."
+PATH="~/bin:.:$PATH"
 HISTSIZE=100000000
 HISTFILESIZE=1000000000
 HISTCONTROL=ignoredups:erasedups
