@@ -169,3 +169,7 @@ let g:netrw_altv=1
 set guicursor=n-v-c-sm:hor20,i-ci-ve:ver25,r-cr-o:block
 
 au BufReadPost,BufNewFile *.tsmod,*.tsonnet,*.jsonnet setlocal expandtab
+
+nmap ;c <Plug>OSCYankOperator
+nmap ;cc <leader>c_
+vmap ;c <Plug>OSCYankVisual
