@@ -42,8 +42,6 @@ nmap * g*
 map <Tab> ^i<Tab><Esc>^
 " noremap < :bprevious<CR>
 " noremap > :bnext<CR>
-noremap < :wincmd R<CR>
-noremap > :wincmd r<CR>
 nmap :E :e <C-R>=expand("%")<CR>
 nmap :D :e <C-R>=fnamemodify(expand("%"), ":p:h")."/"<CR>
 
@@ -173,3 +171,25 @@ au BufReadPost,BufNewFile *.tsmod,*.tsonnet,*.jsonnet setlocal expandtab
 nmap ;c <Plug>OSCYankOperator
 nmap ;cc <leader>c_
 vmap ;c <Plug>OSCYankVisual
+
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+    "Mark destination
+    let curNum = winnr()
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    "Switch to source and shuffle dest->source
+    let markedBuf = bufnr( "%" )
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' curBuf
+    "Switch to dest and shuffle source->dest
+    exe curNum . "wincmd w"
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' markedBuf 
+endfunction
+
+noremap < :call MarkWindowSwap()<CR>:wincmd W<CR>:call DoWindowSwap()<CR>
+noremap > :call MarkWindowSwap()<CR>:wincmd w<CR>:call DoWindowSwap()<CR>
