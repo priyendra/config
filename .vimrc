@@ -56,7 +56,7 @@ autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 " Experimental settings
 set wrap
-set showbreak=▸▸
+" set showbreak=▸▸
 set relativenumber
 set numberwidth=2
 set matchpairs+=<:>  " for matching c++ template brackets.
