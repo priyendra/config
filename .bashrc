@@ -78,7 +78,6 @@ function _fzf_compgen_path() {
 export FZF_DEFAULT_COMMAND="_fzf_compgen_path"
 export FZF_CTRL_T_COMMAND="_fzf_compgen_path"
 
-
 # Rewind up to git root directory.
 function gitcd() {
   DIRECTORY=$(realpath .)
@@ -111,3 +110,11 @@ function pstmux() {
 }
 
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
+
+function bazel() {
+  if test -f tools/bazel; then
+	  tools/bazel "$@"
+	else
+		$(which bazel) "$@"
+	fi
+}

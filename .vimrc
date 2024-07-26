@@ -23,9 +23,10 @@ set hidden " Allow hidden buffers
 set complete-=i  " Custom auto complete behavior.
 
 " highlight the current line, the 81st column and trailing white space.
-" autocmd WinEnter * setlocal cursorline
-" autocmd WinLeave * setlocal nocursorline
-set colorcolumn=76
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+set cursorline
+set colorcolumn=101
 set list listchars=tab:\│\ ,trail:·
 set list
 

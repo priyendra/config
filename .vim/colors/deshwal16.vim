@@ -43,8 +43,8 @@ hi PmenuSel            ctermfg=0     ctermbg=11    cterm=none
 hi TabLine             ctermfg=0     ctermbg=15    cterm=none
 hi TabLineSel          ctermfg=15    ctermbg=0     cterm=none
 hi TabLineFill         ctermfg=8     ctermbg=7     cterm=underline
-hi CursorColumn        ctermfg=none  ctermbg=7     cterm=none
-hi CursorLine          ctermfg=none  ctermbg=7     cterm=none
+hi CursorColumn        ctermfg=none  ctermbg=12    cterm=none
+hi CursorLine          ctermfg=none  ctermbg=12    cterm=none
 hi MatchParen          ctermfg=5     ctermbg=13    cterm=none
 hi Constant            ctermfg=1     ctermbg=none  cterm=none
 hi Special             ctermfg=5     ctermbg=none  cterm=none
