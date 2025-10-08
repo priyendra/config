@@ -55,15 +55,6 @@ fi
 alias grep='egrep --color=auto'
 alias dmux='tmux -u attach || tmux -u new -s default'
 
-# devdocker shortcuts
-function devdocker () {
-  $(git rev-parse --show-toplevel)/tools/devdocker "$@"
-}
-alias dx='devdocker exec --'
-alias dxi='devdocker exec -i --'
-alias dsh='devdocker shell'
-alias dport='devdocker portfwd'
-
 # Vi editing mode
 if [[ $- == *i* ]]; then
   trap 'echo -ne "\e[0m"' DEBUG
@@ -122,3 +113,6 @@ function bazel() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export LS_COLORS=
+complete -r git

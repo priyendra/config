@@ -32,7 +32,7 @@ set list
 
 " tab/indenting stuff
 filetype plugin indent on
-set tabstop=2 shiftwidth=2 softtabstop=2 indentkeys=<Tab>
+set tabstop=2 shiftwidth=2 softtabstop=2 indentkeys=<Tab> expandtab
 set autoindent
 
 command! SaveSession execute "mksession! /tmp/vimbook.vim"
