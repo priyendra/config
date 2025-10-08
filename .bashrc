@@ -32,7 +32,7 @@ function prompt_fn {
 shopt -s histappend
 
 if [[ $(uname -a) == Linux* ]]; then
-  TERM='xterm-256color'
+  TERM='xterm'
 fi
 EDITOR='vim'
 PATH="~/bin:.:$PATH"
